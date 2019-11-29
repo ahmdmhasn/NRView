@@ -10,6 +10,9 @@
 		81C19A582391DB530047EBEA /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C19A4E2391DB530047EBEA /* NRView.framework */; };
 		81C19A5D2391DB530047EBEA /* NRViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A5C2391DB530047EBEA /* NRViewTests.swift */; };
 		81C19A5F2391DB530047EBEA /* NRView.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C19A512391DB530047EBEA /* NRView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81C19A6C2391DB970047EBEA /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C19A692391DB970047EBEA /* NRView.xib */; };
+		81C19A6D2391DB970047EBEA /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
+		81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6B2391DB970047EBEA /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		81C19A572391DB530047EBEA /* NRViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NRViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C19A5C2391DB530047EBEA /* NRViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRViewTests.swift; sourceTree = "<group>"; };
 		81C19A5E2391DB530047EBEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81C19A692391DB970047EBEA /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
+		81C19A6A2391DB970047EBEA /* NRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRView.swift; sourceTree = "<group>"; };
+		81C19A6B2391DB970047EBEA /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 		81C19A502391DB530047EBEA /* NRView */ = {
 			isa = PBXGroup;
 			children = (
+				81C19A682391DB7B0047EBEA /* Source */,
 				81C19A512391DB530047EBEA /* NRView.h */,
 				81C19A522391DB530047EBEA /* Info.plist */,
 			);
@@ -84,6 +91,16 @@
 				81C19A5E2391DB530047EBEA /* Info.plist */,
 			);
 			path = NRViewTests;
+			sourceTree = "<group>";
+		};
+		81C19A682391DB7B0047EBEA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				81C19A6A2391DB970047EBEA /* NRView.swift */,
+				81C19A692391DB970047EBEA /* NRView.xib */,
+				81C19A6B2391DB970047EBEA /* UIView+Ext.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +165,7 @@
 				TargetAttributes = {
 					81C19A4D2391DB530047EBEA = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					81C19A562391DB530047EBEA = {
 						CreatedOnToolsVersion = 11.0;
@@ -178,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C19A6C2391DB970047EBEA /* NRView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +214,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */,
+				81C19A6D2391DB970047EBEA /* NRView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +361,7 @@
 		81C19A632391DB530047EBEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = JUUZV79G5F;
@@ -348,6 +370,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NRView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,6 +379,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = eg.com.iti.NRView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +388,7 @@
 		81C19A642391DB530047EBEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = JUUZV79G5F;
@@ -372,6 +397,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NRView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -388,6 +414,7 @@
 		81C19A662391DB530047EBEA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JUUZV79G5F;
 				INFOPLIST_FILE = NRViewTests/Info.plist;
@@ -406,6 +433,7 @@
 		81C19A672391DB530047EBEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JUUZV79G5F;
 				INFOPLIST_FILE = NRViewTests/Info.plist;
