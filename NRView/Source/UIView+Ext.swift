@@ -18,6 +18,9 @@ extension UIView {
         layer.add(animation, forKey: "shake")
     }
 
+    /**
+     For NRView: Add custom shodow for views
+     */
     func shadow() {
         layer.shadowRadius = 2.0
         layer.shadowColor = UIColor.black.cgColor
