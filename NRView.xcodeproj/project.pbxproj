@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815DFC1823959F2700A8F1AC /* Resources.xcassets */; };
 		81C19A582391DB530047EBEA /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C19A4E2391DB530047EBEA /* NRView.framework */; };
 		81C19A5D2391DB530047EBEA /* NRViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A5C2391DB530047EBEA /* NRViewTests.swift */; };
 		81C19A5F2391DB530047EBEA /* NRView.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C19A512391DB530047EBEA /* NRView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		815DFC1823959F2700A8F1AC /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 		81C19A4E2391DB530047EBEA /* NRView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NRView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C19A512391DB530047EBEA /* NRView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRView.h; sourceTree = "<group>"; };
 		81C19A522391DB530047EBEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				81C19A6A2391DB970047EBEA /* NRView.swift */,
 				81C19A692391DB970047EBEA /* NRView.xib */,
 				81C19A6B2391DB970047EBEA /* UIView+Ext.swift */,
+				815DFC1823959F2700A8F1AC /* Resources.xcassets */,
 			);
 			name = Source;
 			path = ../Source;
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C19A6C2391DB970047EBEA /* NRView.xib in Resources */,
+				815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -347,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
