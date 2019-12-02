@@ -34,7 +34,7 @@ pod 'NRView', '~> 0.1.1'
 
 #### Manually
 
-If you prefer not to use any of the aforementioned dependency managers, you can copy ``` NRView/Source ``` into your project manually.
+If you prefer not to use any of the aforementioned dependency managers, you can copy ``` Source ``` into your project manually.
 
 ## How It Works
 
@@ -82,7 +82,7 @@ Hide NRView with fading animation
 nrView.fadeOut()
 ```
 
-Handle button response (You should set selegate property)
+Handle button response (You should set delegate property)
 ```
 extension ViewController: NoResultViewDelegate {
     func noResultView(_ view: NoResultView, didPressButton sender: UIButton) {
