@@ -17,12 +17,13 @@ class FirstViewController: UIViewController {
         super.viewDidLoad()
         
         // Initial view setup
-        nrView.setup(text: "Something went wrong!",
-                           delegate: self)
-        
+        nrView.delegate = self
+        nrView.setText("OOPS! Something went wrong!")
+//        nrView.setImage(nil, withTintColor: nil)
+
         // Set colors
 //        nrView.textColor = .gray
-//        nrView.imageColor = .gray
+        nrView.imageColor = .gray
         
         // Add shakable animation when image tapped
         nrView.shakeImageOnClick = true
@@ -36,7 +37,7 @@ class FirstViewController: UIViewController {
 //         nrView.buttonStyle(.rounded(cornerRadius: 99, withShadow: true, backgroundColor: .darkGray, textColor: .lightGray))
         
         // With Stroke
-        // nrView.buttonStyle(.stroke(cornerRadius: 5, withShadow: true, color: .blue, strokeWidth: 2))
+        nrView.buttonStyle(.stroke(cornerRadius: 5, withShadow: false, color: .darkGray, strokeWidth: 2))
 
     }
 

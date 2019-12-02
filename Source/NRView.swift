@@ -45,10 +45,9 @@ class NRView: UIView {
     /**
      Set image color
      */
-    @IBInspectable public var imageColor : UIColor = NRView.color {
+    @IBInspectable public var imageColor : UIColor? = nil {
         didSet{
-            imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
-            imageView.tintColor = imageColor
+            self.setImage(imageView.image, withTintColor: imageColor)
         }
     }
 
@@ -99,17 +98,75 @@ class NRView: UIView {
     }
     
     // MARK: - Public Handlers
+    /**
+     Create an instance of NRView
+     - parameter view: parent view in which the NRView will be added to.
+     */
+    static func addToView(_ view: UIView) -> NRView? {
+        
+        // Check if the view already have an instance of NRView
+        for v in view.subviews {
+            if v is NRView {
+                return nil
+            }
+        }
+        
+        let nrView = NRView(frame: CGRect.zero)
+        view.addSubview(nrView)
+        
+        // Set constraints
+        nrView.translatesAutoresizingMaskIntoConstraints = false
+        nrView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        nrView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        nrView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true
+        nrView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
+                
+        return nrView
+    }
     
     /**
-     This method provides initial setup for the view
-     - parameter text: text to be added to the view
-     - parameter image: image that will be displayed, can be nil
-     - parameter delegate: set a delegate to receive view actions
+     Remove NRView if already added to the view
+     - parameter view: parent view to remove NRView from
+     - parameter animated: should animate
      */
-    public func setup(text: String? = nil, image: UIImage? = nil, delegate: NRViewDelegate? = nil) {
-        if let text = text { self.textLabel.text = text }
-        if let image = image { self.imageView.image = image }
-        if let delegate = delegate { self.delegate = delegate }
+    static func removeFromView(_ view: UIView, animated: Bool = true) {
+        for v in view.subviews {
+            if v is NRView {
+                if animated {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        v.alpha = 0
+                    }) { (completed) in
+                        v.removeFromSuperview()
+                    }
+                    
+                } else {
+                    v.removeFromSuperview()
+                }
+                
+            }
+        }
+    }
+        
+    /**
+     Set text fot NRView
+     - parameter text: text to be added to the view
+     */
+    public func setText(_ text: String) {
+        self.textLabel.text = text
+    }
+    
+    /**
+     Set image for NRView with tint color
+     - parameter image: image that will be displayed, can be nil
+     - parameter color: tint color, leave it or set the value with nil ta add the original image
+     */
+    public func setImage(_ image: UIImage?, withTintColor color: UIColor? = nil) {
+        if let color = color {
+            self.imageView.image = image?.withRenderingMode(.alwaysTemplate)
+            self.imageView.tintColor = color
+        } else {
+            self.imageView.image = image
+        }
     }
     
     /**
@@ -147,12 +204,16 @@ class NRView: UIView {
      Show NRView with a duration
      - parameter withAnimationType: custom animation type with duration of the animation
      */
-    public func show(withAnimationType type: AnimationType = .fade(0.3)) {
+    public func show(withAnimationType type: AnimationType? = .fade(0.3)) {
         switch type {
+            
         case .fade(let duration):
             UIView.animate(withDuration: duration) {
                 self.alpha = 1
             }
+            
+        case .none:
+            self.alpha = 1
         }
     }
     
@@ -160,12 +221,16 @@ class NRView: UIView {
      Hide NRView with a duration
      - parameter withAnimationType: custom animation type with duration of the animation
      */
-    public func hide(withAnimationType type: AnimationType = .fade(0.3)) {
+    public func hide(withAnimationType type: AnimationType? = .fade(0.3)) {
         switch type {
+            
         case .fade(let duration):
             UIView.animate(withDuration: duration) {
                 self.alpha = 0.0
             }
+            
+        case .none:
+            self.alpha = 1
         }
     }
     

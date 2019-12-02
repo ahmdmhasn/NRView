@@ -8,21 +8,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SecondVC-->
+        <!--Second View Controller-->
         <scene sceneID="nec-h2-6pG">
             <objects>
-                <viewController id="g1Q-fY-e72" sceneMemberID="viewController">
+                <viewController id="g1Q-fY-e72" customClass="SecondViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SRE-uv-1rX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="X2D-rx-jPo"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="SecondVC" id="XSf-Ea-oQv"/>
+                    <navigationItem key="navigationItem" id="Yp1-uJ-q1N">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="6vp-Fr-ofI">
+                                <connections>
+                                    <action selector="addTapped:" destination="g1Q-fY-e72" id="3DM-PU-T5b"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="Ypn-uR-Xrh">
+                                <connections>
+                                    <action selector="removeTapped:" destination="g1Q-fY-e72" id="mnY-Mx-vIY"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rM5-tL-qHn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-717" y="476"/>
+            <point key="canvasLocation" x="192.75362318840581" y="475.44642857142856"/>
         </scene>
         <!--FirstVC-->
         <scene sceneID="6aM-Yh-sUg">
@@ -93,12 +106,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="KT4-ih-GIn" kind="relationship" relationship="viewControllers" id="Oeq-Oz-ae1"/>
-                        <segue destination="g1Q-fY-e72" kind="relationship" relationship="viewControllers" id="5Ez-mb-Rue"/>
+                        <segue destination="Wa6-ef-OCF" kind="relationship" relationship="viewControllers" id="5Ez-mb-Rue"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="srR-zL-0R3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1637" y="152"/>
+        </scene>
+        <!--SecondVC-->
+        <scene sceneID="xQj-3a-LTi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wa6-ef-OCF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="SecondVC" id="XSf-Ea-oQv"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GdN-GZ-6NS">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="g1Q-fY-e72" kind="relationship" relationship="rootViewController" id="bge-Bl-luc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pKn-G5-8Q4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-717.39130434782612" y="475.44642857142856"/>
         </scene>
     </scenes>
 </document>
