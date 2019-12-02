@@ -27,10 +27,10 @@ s.source = { :git => "https://github.com/ahmdmhasn/NRView.git",
 s.framework = "UIKit"
 
 # 8
-s.source_files = "NRView/**/*.{swift}"
+s.source_files = "Source/*.{swift}"
 
 # 9
-s.resources = "NRView/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
+s.resources = "Source/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 
 # 10
 s.swift_version = "5.0"

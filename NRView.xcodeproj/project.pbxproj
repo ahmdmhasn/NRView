@@ -100,7 +100,8 @@
 				81C19A692391DB970047EBEA /* NRView.xib */,
 				81C19A6B2391DB970047EBEA /* UIView+Ext.swift */,
 			);
-			path = Source;
+			name = Source;
+			path = ../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
