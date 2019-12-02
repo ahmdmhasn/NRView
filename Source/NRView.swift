@@ -8,18 +8,26 @@
 
 import UIKit
 
-protocol NoResultViewDelegate: class {
-    func noResultView(_ view: NRView, didPressButton sender: UIButton)
+protocol NRViewDelegate: class {
+    func nrView(_ view: NRView, didPressButton sender: UIButton)
 }
 
 class NRView: UIView {
+    
+    // MARK: - Default Properties
+    static var color: UIColor = UIColor.gray
+    static var buttonStyle: ButtonStyle = .none(color: NRView.color)
     
     enum ButtonStyle {
         case none(color: UIColor)
         case rounded(cornerRadius: CGFloat, withShadow: Bool, backgroundColor: UIColor, textColor: UIColor)
         case stroke(cornerRadius: CGFloat, withShadow: Bool, color: UIColor, strokeWidth: CGFloat)
     }
-
+    
+    enum AnimationType {
+        case fade(_ duration: Double)
+    }
+    
     // Mark: - Outlets
     
     @IBOutlet weak var contentView: UIView!
@@ -32,12 +40,12 @@ class NRView: UIView {
     
     // MARK: - Properties
     
-    public weak var delegate: NoResultViewDelegate?
+    public weak var delegate: NRViewDelegate?
     
     /**
      Set image color
      */
-    @IBInspectable public var imageColor : UIColor = UIColor.gray {
+    @IBInspectable public var imageColor : UIColor = NRView.color {
         didSet{
             imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
             imageView.tintColor = imageColor
@@ -47,7 +55,7 @@ class NRView: UIView {
     /**
      Set text color
      */
-    @IBInspectable public var textColor : UIColor = UIColor.gray {
+    @IBInspectable public var textColor : UIColor = NRView.color {
         didSet{
             self.textLabel.textColor = textColor
         }
@@ -86,6 +94,8 @@ class NRView: UIView {
         self.addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // Set default values
+        self.buttonStyle(NRView.buttonStyle)
     }
     
     // MARK: - Public Handlers
@@ -96,10 +106,10 @@ class NRView: UIView {
      - parameter image: image that will be displayed, can be nil
      - parameter delegate: set a delegate to receive view actions
      */
-    public func setup(text: String?, image: UIImage?, delegate: NoResultViewDelegate) {
-        self.textLabel.text = text
-        self.imageView.image = image
-        self.delegate = delegate
+    public func setup(text: String? = nil, image: UIImage? = nil, delegate: NRViewDelegate? = nil) {
+        if let text = text { self.textLabel.text = text }
+        if let image = image { self.imageView.image = image }
+        if let delegate = delegate { self.delegate = delegate }
     }
     
     /**
@@ -134,29 +144,35 @@ class NRView: UIView {
     }
     
     /**
-     Fade in a view with a duration
-     - parameter duration: custom animation duration
+     Show NRView with a duration
+     - parameter withAnimationType: custom animation type with duration of the animation
      */
-    public func fadeIn(duration: TimeInterval = 1.0) {
-        UIView.animate(withDuration: duration) {
-            self.alpha = 1
+    public func show(withAnimationType type: AnimationType = .fade(0.3)) {
+        switch type {
+        case .fade(let duration):
+            UIView.animate(withDuration: duration) {
+                self.alpha = 1
+            }
         }
     }
     
     /**
-     Fade out a view with a duration
-     - parameter duration: custom animation duration
+     Hide NRView with a duration
+     - parameter withAnimationType: custom animation type with duration of the animation
      */
-    public func fadeOut(duration: TimeInterval = 1.0) {
-        UIView.animate(withDuration: duration) {
-            self.alpha = 0.0
+    public func hide(withAnimationType type: AnimationType = .fade(0.3)) {
+        switch type {
+        case .fade(let duration):
+            UIView.animate(withDuration: duration) {
+                self.alpha = 0.0
+            }
         }
     }
     
     // MARK: - Private Handlers
     
     @IBAction private func buttonPressed(_ sender: Any) {
-        delegate?.noResultView(self, didPressButton: sender as! UIButton)
+        delegate?.nrView(self, didPressButton: sender as! UIButton)
     }
     
     @objc private func imageViewTapped(_ sender: UIGestureRecognizer) {

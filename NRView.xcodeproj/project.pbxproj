@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815DFC1823959F2700A8F1AC /* Resources.xcassets */; };
+		815DFC702395A74200A8F1AC /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
 		81C19A582391DB530047EBEA /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C19A4E2391DB530047EBEA /* NRView.framework */; };
 		81C19A5D2391DB530047EBEA /* NRViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A5C2391DB530047EBEA /* NRViewTests.swift */; };
 		81C19A5F2391DB530047EBEA /* NRView.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C19A512391DB530047EBEA /* NRView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81C19A6C2391DB970047EBEA /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C19A692391DB970047EBEA /* NRView.xib */; };
-		81C19A6D2391DB970047EBEA /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
 		81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6B2391DB970047EBEA /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -219,8 +219,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815DFC702395A74200A8F1AC /* NRView.swift in Sources */,
 				81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */,
-				81C19A6D2391DB970047EBEA /* NRView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
