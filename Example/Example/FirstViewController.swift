@@ -18,12 +18,13 @@ class FirstViewController: UIViewController {
         
         // Initial view setup
         nrView.delegate = self
-        nrView.setText("OOPS! Something went wrong!")
+        nrView.setText(title: "Internet Error",
+                       description: "Please check your internet connection then try again.")
 //        nrView.setImage(nil, withTintColor: nil)
 
         // Set colors
 //        nrView.textColor = .gray
-        nrView.imageColor = .gray
+//        nrView.imageColor = .gray
         
         // Add shakable animation when image tapped
         nrView.shakeImageOnClick = true
