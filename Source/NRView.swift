@@ -15,7 +15,7 @@ protocol NRViewDelegate: class {
 class NRView: UIView {
     
     // MARK: - Default Properties
-    static var color: UIColor = UIColor.gray
+    static var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
     static var buttonStyle: ButtonStyle = .none(color: NRView.color)
     
     enum ButtonStyle {
@@ -34,7 +34,9 @@ class NRView: UIView {
 
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var button: UIButton!
     
@@ -56,7 +58,8 @@ class NRView: UIView {
      */
     @IBInspectable public var textColor : UIColor = NRView.color {
         didSet{
-            self.textLabel.textColor = textColor
+            self.titleLabel.textColor = textColor
+            self.descriptionLabel.textColor = textColor
         }
     }
     
@@ -149,10 +152,15 @@ class NRView: UIView {
         
     /**
      Set text fot NRView
-     - parameter text: text to be added to the view
+     - parameter title: title text. set it nil to hide the title
+     - parameter description: description text. set it nil to hide the description
      */
-    public func setText(_ text: String) {
-        self.textLabel.text = text
+    public func setText(title: String?, description: String?) {
+        self.titleLabel.text = title
+        self.descriptionLabel.text = description
+        // Hide title | description if empty or nil
+        self.titleLabel.isHidden = (title?.isEmpty ?? true)
+        self.descriptionLabel.isHidden = (description?.isEmpty ?? true)
     }
     
     /**
