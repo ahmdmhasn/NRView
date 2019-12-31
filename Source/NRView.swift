@@ -111,11 +111,11 @@ class NRView: UIView {
      - parameter view: parent view in which the NRView will be added to.
      - parameter initiallyHidden: If you want NRView to be added but not visible after initialization, default value is false
      */
-    static func addToView(_ view: UIView, initiallyHidden: Bool = false) -> NRView? {
+    static func addToView(_ view: UIView, initiallyHidden: Bool = false) -> NRView {
         // Check if the view already have an instance of NRView
         for v in view.subviews {
             if v is NRView {
-                return nil
+                return v as! NRView
             }
         }
         // Create instance and set visibility
