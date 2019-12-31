@@ -23,29 +23,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="VOv-DL-oAK">
-                    <rect key="frame" x="91.5" y="134" width="367" height="300"/>
+                    <rect key="frame" x="69" y="78" width="412.5" height="412.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="BTy-TG-hdb">
-                            <rect key="frame" x="92" y="0.0" width="183" height="183.5"/>
+                            <rect key="frame" x="103" y="0.0" width="206" height="206"/>
                             <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="BTy-TG-hdb" secondAttribute="height" multiplier="1:1" id="k72-OU-ZNK"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="riI-iW-ckn">
-                            <rect key="frame" x="165.5" y="199.5" width="36.5" height="20.5"/>
+                            <rect key="frame" x="188" y="222" width="36.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something went wrong!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raf-ZP-FuB">
-                            <rect key="frame" x="0.0" y="236" width="367" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Something went wrong!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Raf-ZP-FuB">
+                            <rect key="frame" x="0.0" y="258.5" width="412.5" height="108"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqe-IT-SZe">
-                            <rect key="frame" x="156" y="270" width="55" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqe-IT-SZe">
+                            <rect key="frame" x="178.5" y="382.5" width="55" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                             <state key="normal" title="Tap Me!"/>
@@ -55,14 +55,15 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="BTy-TG-hdb" firstAttribute="width" secondItem="VOv-DL-oAK" secondAttribute="width" multiplier="1:2" id="Sc4-MM-H8o"/>
+                        <constraint firstItem="BTy-TG-hdb" firstAttribute="width" secondItem="VOv-DL-oAK" secondAttribute="width" multiplier="1:2" priority="998" id="Sc4-MM-H8o"/>
                         <constraint firstItem="Raf-ZP-FuB" firstAttribute="width" secondItem="VOv-DL-oAK" secondAttribute="width" id="cUp-VE-wjx"/>
+                        <constraint firstAttribute="width" secondItem="VOv-DL-oAK" secondAttribute="height" id="v3N-2n-9Fh"/>
                     </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="VOv-DL-oAK" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2:3" id="529-Aj-x6f"/>
+                <constraint firstItem="VOv-DL-oAK" firstAttribute="width" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="3:4" id="529-Aj-x6f"/>
                 <constraint firstItem="VOv-DL-oAK" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="Q03-c5-Fq0"/>
                 <constraint firstItem="VOv-DL-oAK" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="v5K-H5-dsP"/>
             </constraints>
