@@ -81,13 +81,11 @@ class NRView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         commitInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         commitInit()
     }
     
@@ -96,27 +94,35 @@ class NRView: UIView {
         self.addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        // Set default values
+        updateInterface()
+    }
+    
+    // Set default values
+    private func updateInterface() {
         self.buttonStyle(NRView.buttonStyle)
+        self.setImage(imageView.image, withTintColor: imageColor)
+        self.titleLabel.textColor = textColor
+        self.descriptionLabel.textColor = textColor
     }
     
     // MARK: - Public Handlers
     /**
      Create an instance of NRView
      - parameter view: parent view in which the NRView will be added to.
+     - parameter initiallyHidden: If you want NRView to be added but not visible after initialization, default value is false
      */
-    static func addToView(_ view: UIView) -> NRView? {
-        
+    static func addToView(_ view: UIView, initiallyHidden: Bool = false) -> NRView? {
         // Check if the view already have an instance of NRView
         for v in view.subviews {
             if v is NRView {
                 return nil
             }
         }
-        
+        // Create instance and set visibility
         let nrView = NRView(frame: CGRect.zero)
+        nrView.alpha = initiallyHidden ? 0 : 1
+        // Add to subview
         view.addSubview(nrView)
-        
         // Set constraints
         nrView.translatesAutoresizingMaskIntoConstraints = false
         nrView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
