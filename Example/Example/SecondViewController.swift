@@ -20,7 +20,9 @@ class SecondViewController: UIViewController {
     // MARK: - Handlers
     
     @IBAction func addTapped(_ sender: UIBarButtonItem) {
-        let nrView = NRView.addToView(view)
+        let nrView = NRView.addToView(view, initiallyHidden: true)
+        // Shake image on tap
+        nrView?.shakeImageOnClick = true
         // Show with animation
         nrView?.show(withAnimationType: .fade(0.5))
     }
