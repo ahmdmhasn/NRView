@@ -16,13 +16,13 @@ class NRView: UIView {
     
     // MARK: - Default Properties
     static var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
-    static var buttonStyle: ButtonStyle = .none(color: NRView.color)
+    static var buttonStyle: NRButtonStyle = NRButtonStyleNone.default
     
-    enum ButtonStyle {
-        case none(color: UIColor)
-        case rounded(cornerRadius: CGFloat, withShadow: Bool, backgroundColor: UIColor, textColor: UIColor)
-        case stroke(cornerRadius: CGFloat, withShadow: Bool, color: UIColor, strokeWidth: CGFloat)
-    }
+//    enum ButtonStyle {
+//        case none(color: UIColor)
+//        case rounded(cornerRadius: CGFloat, withShadow: Bool, backgroundColor: UIColor, textColor: UIColor)
+//        case stroke(cornerRadius: CGFloat, withShadow: Bool, color: UIColor, strokeWidth: CGFloat)
+//    }
     
     enum AnimationType {
         case fade(_ duration: Double)
@@ -99,7 +99,7 @@ class NRView: UIView {
     
     // Set default values
     private func updateInterface() {
-        self.buttonStyle(NRView.buttonStyle)
+        self.setButtonStyle(NRView.buttonStyle)
         self.setImage(imageView.image, withTintColor: imageColor)
         self.titleLabel.textColor = textColor
         self.descriptionLabel.textColor = textColor
@@ -185,33 +185,25 @@ class NRView: UIView {
     
     /**
      Set different styles for the button
-     - parameter style: choose your prefered style
+     - parameter style: choose your prefered style, set it to nil to hide the button
      */
-    public func buttonStyle(_ style: ButtonStyle) {
+    public func setButtonStyle(_ style: NRButtonStyle?) {
+        
+        guard let style = style else {
+            button.isHidden = true
+            return
+        }
         
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         
-        switch style {
-        case .none(let color):
-            button.setTitleColor(color, for: .normal)
-            
-        case .rounded(let cornerRadius, let withShadow, let backgroundColor, let textColor):
-            let halfHeight = button.bounds.height / 2
-            button.layer.cornerRadius = (cornerRadius > halfHeight) ? halfHeight : cornerRadius
-            button.backgroundColor = backgroundColor
-            button.setTitleColor(textColor, for: .normal)
-            if withShadow { button.shadow() }
-            
-        case .stroke(let cornerRadius, let withShadow, let color, let strokeWidth):
-            let halfHeight = button.bounds.height / 2
-            button.layer.cornerRadius = (cornerRadius > halfHeight) ? halfHeight : cornerRadius
-            button.backgroundColor = .none
-            button.setTitleColor(color, for: .normal)
-            button.layer.borderWidth = strokeWidth
-            button.layer.borderColor = color.cgColor
-            if withShadow { button.shadow() }
-        }
+        let halfHeight = button.bounds.height / 2
+        button.layer.cornerRadius = (style.cornerRadius > halfHeight) ? halfHeight : style.cornerRadius
+        button.backgroundColor = style.backgroundColor
+        button.setTitleColor(style.textColor, for: .normal)
+        button.layer.borderWidth = style.borderWidth
+        button.layer.borderColor = style.borderColor.cgColor
+        if style.withShadow { button.shadow() }
     }
     
     /**
