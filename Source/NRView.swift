@@ -15,8 +15,10 @@ protocol NRViewDelegate: class {
 class NRView: UIView {
     
     // MARK: - Default Properties
-    static var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
-    static var buttonStyle: ButtonStyle = .none(color: NRView.color)
+    struct Properties {
+        static var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
+        static var buttonStyle: ButtonStyle = .none(color: NRView.Properties.color)
+    }
     
     enum ButtonStyle {
         case none(color: UIColor)
@@ -30,15 +32,45 @@ class NRView: UIView {
     
     // Mark: - Outlets
     
-    @IBOutlet weak var contentView: UIView!
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "image")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.textColor = NRView.Properties.color
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        return label
+    }()
+    
+    let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.textColor = NRView.Properties.color
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        return label
+    }()
 
-    @IBOutlet weak var imageView: UIImageView!
+    let button: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("Tap Me!", for: .normal)
+        button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+        return button
+    }()
     
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
-    @IBOutlet weak var button: UIButton!
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel, descriptionLabel, button])
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.spacing = 12
+        return stackView
+    }()
     
     // MARK: - Properties
     
@@ -56,7 +88,7 @@ class NRView: UIView {
     /**
      Set text color
      */
-    @IBInspectable public var textColor : UIColor = NRView.color {
+    @IBInspectable public var textColor : UIColor = NRView.Properties.color {
         didSet{
             self.titleLabel.textColor = textColor
             self.descriptionLabel.textColor = textColor
@@ -90,16 +122,22 @@ class NRView: UIView {
     }
     
     private func commitInit() {
-        Bundle.main.loadNibNamed(String(describing: NRView.self), owner: self, options: nil)
-        self.addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+
+        imageView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.4).isActive = true
+        imageView.heightAnchor.constraint(lessThanOrEqualTo: self.heightAnchor, multiplier: 0.4).isActive = true
+
         updateInterface()
     }
     
     // Set default values
     private func updateInterface() {
-        self.buttonStyle(NRView.buttonStyle)
+        self.buttonStyle(NRView.Properties.buttonStyle)
         self.setImage(imageView.image, withTintColor: imageColor)
         self.titleLabel.textColor = textColor
         self.descriptionLabel.textColor = textColor
@@ -250,8 +288,8 @@ class NRView: UIView {
     
     // MARK: - Private Handlers
     
-    @IBAction private func buttonPressed(_ sender: Any) {
-        delegate?.nrView(self, didPressButton: sender as! UIButton)
+    @objc private func didTapButton(_ sender: UIButton) {
+        delegate?.nrView(self, didPressButton: sender)
     }
     
     @objc private func imageViewTapped(_ sender: UIGestureRecognizer) {
