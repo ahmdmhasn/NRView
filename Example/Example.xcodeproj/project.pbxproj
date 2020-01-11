@@ -10,7 +10,6 @@
 		814B9B432395A9E300820768 /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814B9B402395A9DB00820768 /* NRView.framework */; };
 		814B9B442395A9E300820768 /* NRView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 814B9B402395A9DB00820768 /* NRView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		814B9B542395AC1D00820768 /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 814B9B502395AC1D00820768 /* Resources.xcassets */; };
-		814B9B552395AC1D00820768 /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814B9B512395AC1D00820768 /* NRView.xib */; };
 		814B9B562395AC1D00820768 /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B9B522395AC1D00820768 /* NRView.swift */; };
 		814B9B572395AC1D00820768 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B9B532395AC1D00820768 /* UIView+Ext.swift */; };
 		814B9B592395C10400820768 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B9B582395C10300820768 /* SecondViewController.swift */; };
@@ -38,7 +37,6 @@
 /* Begin PBXFileReference section */
 		814B9B402395A9DB00820768 /* NRView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NRView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		814B9B502395AC1D00820768 /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
-		814B9B512395AC1D00820768 /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
 		814B9B522395AC1D00820768 /* NRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRView.swift; sourceTree = "<group>"; };
 		814B9B532395AC1D00820768 /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		814B9B582395C10300820768 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				814B9B502395AC1D00820768 /* Resources.xcassets */,
-				814B9B512395AC1D00820768 /* NRView.xib */,
 				814B9B522395AC1D00820768 /* NRView.swift */,
 				814B9B532395AC1D00820768 /* UIView+Ext.swift */,
 			);
@@ -175,7 +172,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				815DFC532395A22000A8F1AC /* LaunchScreen.storyboard in Resources */,
-				814B9B552395AC1D00820768 /* NRView.xib in Resources */,
 				814B9B542395AC1D00820768 /* Resources.xcassets in Resources */,
 				815DFC502395A22000A8F1AC /* Assets.xcassets in Resources */,
 				815DFC4E2395A21F00A8F1AC /* Main.storyboard in Resources */,

@@ -18,6 +18,7 @@ class NRView: UIView {
     struct Properties {
         static var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
         static var buttonStyle: ButtonStyle = .none(color: NRView.Properties.color)
+        static var image: UIImage? = UIImage(named: "image")
     }
     
     enum ButtonStyle {
@@ -30,11 +31,10 @@ class NRView: UIView {
         case fade(_ duration: Double)
     }
     
-    // Mark: - Outlets
+    // Mark: - Views
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "image")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -122,24 +122,24 @@ class NRView: UIView {
     }
     
     private func commitInit() {
-        
+        // Add StackView and set constraints
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-
+        // Set ImageView constraints
         imageView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.4).isActive = true
         imageView.heightAnchor.constraint(lessThanOrEqualTo: self.heightAnchor, multiplier: 0.4).isActive = true
-
+        
         updateInterface()
     }
     
     // Set default values
     private func updateInterface() {
         self.buttonStyle(NRView.Properties.buttonStyle)
-        self.setImage(imageView.image, withTintColor: imageColor)
-        self.titleLabel.textColor = textColor
+        self.setImage(NRView.Properties.image, withTintColor: imageColor)
+        self.titleLabel.textColor = NRView.Properties.color
         self.descriptionLabel.textColor = textColor
     }
     
