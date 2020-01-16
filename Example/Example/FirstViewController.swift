@@ -32,13 +32,13 @@ class FirstViewController: UIViewController {
         
         // Change button style
         // Default
-        nrView.buttonStyle(.none(color: .gray))
+//        nrView.setButtonStyle(.none(color: .gray))
 
         // Rounded
 //         nrView.buttonStyle(.rounded(cornerRadius: 99, withShadow: true, backgroundColor: .darkGray, textColor: .lightGray))
         
         // With Stroke
-        nrView.buttonStyle(.stroke(cornerRadius: 5, withShadow: false, color: .darkGray, strokeWidth: 2))
+//        nrView.setButtonStyle(.stroke(cornerRadius: 5, withShadow: false, color: .darkGray, strokeWidth: 2))
 
     }
 
