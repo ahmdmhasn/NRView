@@ -15,18 +15,14 @@ protocol NRViewDelegate: class {
 class NRView: UIView {
     
     // MARK: - Default Properties
-    struct Properties {
-        static var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
-        static var buttonStyle: ButtonStyle = .none(color: NRView.Properties.color)
-        static var image: UIImage? = UIImage(named: "image")
+    struct NRProperties {
+        var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
+        var buttonStyle: NRButtonStyle = NRButtonStyleNone.default
+        var image: UIImage? = UIImage(named: "image")
     }
     
-//    enum ButtonStyle {
-//        case none(color: UIColor)
-//        case rounded(cornerRadius: CGFloat, withShadow: Bool, backgroundColor: UIColor, textColor: UIColor)
-//        case stroke(cornerRadius: CGFloat, withShadow: Bool, color: UIColor, strokeWidth: CGFloat)
-//    }
-    
+    public static var Properties = NRProperties()
+        
     enum AnimationType {
         case fade(_ duration: Double)
     }
@@ -137,7 +133,7 @@ class NRView: UIView {
     
     // Set default values
     private func updateInterface() {
-        self.buttonStyle(NRView.Properties.buttonStyle)
+        self.setButtonStyle(NRView.Properties.buttonStyle)
         self.setImage(NRView.Properties.image, withTintColor: imageColor)
         self.titleLabel.textColor = NRView.Properties.color
         self.descriptionLabel.textColor = textColor
@@ -288,4 +284,49 @@ class NRView: UIView {
         imageView.shake()
     }
     
+}
+
+
+// MARK: - Protocols
+
+protocol NRButtonStyle {
+    var title: String { get }
+    var cornerRadius: CGFloat { get }
+    var withShadow: Bool { get }
+    var backgroundColor: UIColor { get }
+    var textColor: UIColor { get }
+    var borderColor: UIColor { get }
+    var borderWidth: CGFloat { get }
+}
+
+// MARK: - Structs
+struct NRButtonStyleNone: NRButtonStyle {
+    static var `default` = NRButtonStyleNone(title: "Tap Me!", backgroundColor: .white, textColor: .blue)
+    let title: String
+    let cornerRadius: CGFloat = 0
+    let withShadow: Bool = false
+    let backgroundColor: UIColor
+    let textColor: UIColor
+    let borderWidth: CGFloat = 0
+    let borderColor: UIColor = .clear
+}
+
+struct NRButtonStyleRounded: NRButtonStyle {
+    let title: String
+    let cornerRadius: CGFloat
+    let withShadow: Bool
+    let backgroundColor: UIColor
+    let textColor: UIColor
+    let borderWidth: CGFloat = 0
+    let borderColor: UIColor = .clear
+}
+
+struct NRButtonStyleBorder: NRButtonStyle {
+    let title: String
+    let cornerRadius: CGFloat
+    let withShadow: Bool
+    let backgroundColor: UIColor
+    let textColor: UIColor
+    let borderWidth: CGFloat
+    let borderColor: UIColor
 }

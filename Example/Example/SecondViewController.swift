@@ -29,7 +29,7 @@ class SecondViewController: UIViewController {
         nrView.imageColor = .lightGray
 
         // Set Button
-        nrView.setButtonStyle(.rounded(cornerRadius: 3, withShadow: false, backgroundColor: UIColor.blue.withAlphaComponent(0.1), textColor: UIColor.lightGray))
+        nrView.setButtonStyle(NRButtonStyleRounded(title: "Tap Me!", cornerRadius: 3, withShadow: false, backgroundColor: UIColor.blue.withAlphaComponent(0.1), textColor: UIColor.lightGray))
         
         return nrView
     }()
