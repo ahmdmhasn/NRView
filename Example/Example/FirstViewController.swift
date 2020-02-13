@@ -23,8 +23,8 @@ class FirstViewController: UIViewController {
 //        nrView.setImage(nil, withTintColor: nil)
 
         // Set colors
-//        nrView.textColor = .gray
-//        nrView.imageColor = .gray
+        nrView.textColor = .gray
+        nrView.imageColor = .gray
         
         // Add shakable animation when image tapped
         nrView.shakeImageOnClick = true
@@ -35,7 +35,15 @@ class FirstViewController: UIViewController {
 //        nrView.setButtonStyle(.none(color: .gray))
 
         // Rounded
-//         nrView.buttonStyle(.rounded(cornerRadius: 99, withShadow: true, backgroundColor: .darkGray, textColor: .lightGray))
+        nrView.setButtonStyle(
+            NRButtonStyleRounded(
+                title: "Try Again",
+                cornerRadius: 99,
+                withShadow: false,
+                backgroundColor: UIColor.blue.withAlphaComponent(0.2),
+                textColor: .blue
+            )
+        )
         
         // With Stroke
 //        nrView.setButtonStyle(.stroke(cornerRadius: 5, withShadow: false, color: .darkGray, strokeWidth: 2))

@@ -28,4 +28,23 @@ extension UIView {
         layer.shadowOpacity = 0.5
         layer.masksToBounds = false
     }
+    
+    func fadeAnimation(duration: Double, alpha: CGFloat) {
+        UIView.animate(withDuration: duration) {
+            self.alpha = alpha
+        }
+    }
+    
+    func scaleAnimation(duration: Double, scale: CGFloat) {
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            usingSpringWithDamping: 0.5,
+            initialSpringVelocity: 0,
+            options: [],
+            animations: {
+                self.transform = CGAffineTransform.init(scaleX: scale, y: scale)
+        }, completion: nil)
+    }
+    
 }

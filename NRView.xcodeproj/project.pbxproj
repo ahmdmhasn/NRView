@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		81325CB423CFE72200300D79 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F3CFB923BE4747006FAAF0 /* Models.swift */; };
 		815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815DFC1823959F2700A8F1AC /* Resources.xcassets */; };
 		815DFC702395A74200A8F1AC /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
 		81C19A582391DB530047EBEA /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C19A4E2391DB530047EBEA /* NRView.framework */; };
 		81C19A5D2391DB530047EBEA /* NRViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A5C2391DB530047EBEA /* NRViewTests.swift */; };
 		81C19A5F2391DB530047EBEA /* NRView.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C19A512391DB530047EBEA /* NRView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6B2391DB970047EBEA /* UIView+Ext.swift */; };
-		85F3CFBA23BE4747006FAAF0 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F3CFB923BE4747006FAAF0 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +35,6 @@
 		81C19A5E2391DB530047EBEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81C19A6A2391DB970047EBEA /* NRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRView.swift; sourceTree = "<group>"; };
 		81C19A6B2391DB970047EBEA /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		85F3CFB923BE4747006FAAF0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +99,6 @@
 				81C19A6A2391DB970047EBEA /* NRView.swift */,
 				81C19A6B2391DB970047EBEA /* UIView+Ext.swift */,
 				815DFC1823959F2700A8F1AC /* Resources.xcassets */,
-				85F3CFB923BE4747006FAAF0 /* Models.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -219,7 +215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85F3CFBA23BE4747006FAAF0 /* Models.swift in Sources */,
 				815DFC702395A74200A8F1AC /* NRView.swift in Sources */,
 				81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */,
 			);
@@ -230,7 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C19A5D2391DB530047EBEA /* NRViewTests.swift in Sources */,
-				81325CB423CFE72200300D79 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

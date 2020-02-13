@@ -8,22 +8,23 @@
 
 import UIKit
 
-protocol NRViewDelegate: class {
+public protocol NRViewDelegate: class {
     func nrView(_ view: NRView, didPressButton sender: UIButton)
 }
 
-class NRView: UIView {
+public class NRView: UIView {
     
     // MARK: - Default Properties
-    struct NRProperties {
-        var color: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
+    public struct NRProperties {
+        var imageColor: UIColor? = nil
+        var textColor: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
         var buttonStyle: NRButtonStyle = NRButtonStyleNone.default
         var image: UIImage? = UIImage(named: "image")
     }
     
     public static var Properties = NRProperties()
         
-    enum AnimationType {
+    public enum AnimationType {
         case fade(_ duration: Double)
     }
     
@@ -39,7 +40,7 @@ class NRView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = NRView.Properties.color
+        label.textColor = NRView.Properties.textColor
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         return label
     }()
@@ -48,14 +49,13 @@ class NRView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = NRView.Properties.color
+        label.textColor = NRView.Properties.textColor
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
 
     let button: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Tap Me!", for: .normal)
         button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
         return button
     }()
@@ -75,36 +75,24 @@ class NRView: UIView {
     /**
      Set image color
      */
-    @IBInspectable public var imageColor : UIColor? = nil {
-        didSet{
-            self.setImage(imageView.image, withTintColor: imageColor)
-        }
+    @IBInspectable public var imageColor : UIColor? = NRView.Properties.imageColor {
+        didSet { updateInterface() }
     }
 
     /**
      Set text color
      */
-    @IBInspectable public var textColor : UIColor = NRView.Properties.color {
-        didSet{
-            self.titleLabel.textColor = textColor
-            self.descriptionLabel.textColor = textColor
-        }
+    @IBInspectable public var textColor : UIColor = NRView.Properties.textColor {
+        didSet { updateInterface() }
     }
     
     /**
      Add shaking animation when image is tapped
      */
     public var shakeImageOnClick: Bool = false {
-        didSet {
-            imageView.isUserInteractionEnabled = shakeImageOnClick
-            if shakeImageOnClick {
-                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:))))
-            } else {
-                imageView.gestureRecognizers?.forEach{imageView.removeGestureRecognizer($0)}
-            }
-        }
+        didSet { updateInterface() }
     }
-    
+        
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -117,6 +105,11 @@ class NRView: UIView {
         commitInit()
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        updateInterface()
+    }
+
     private func commitInit() {
         // Add StackView and set constraints
         self.addSubview(stackView)
@@ -133,12 +126,22 @@ class NRView: UIView {
     
     // Set default values
     private func updateInterface() {
-        self.setButtonStyle(NRView.Properties.buttonStyle)
+        // Image View Color
         self.setImage(NRView.Properties.image, withTintColor: imageColor)
-        self.titleLabel.textColor = NRView.Properties.color
+        // Text Color
+        self.titleLabel.textColor = textColor
         self.descriptionLabel.textColor = textColor
+        // Image Shaking
+        imageView.isUserInteractionEnabled = shakeImageOnClick
+        if shakeImageOnClick {
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:))))
+        } else {
+            imageView.gestureRecognizers?.forEach{imageView.removeGestureRecognizer($0)}
+        }
+        // Button
+        self.setButtonStyle(NRView.Properties.buttonStyle)
     }
-    
+
     // MARK: - Public Handlers
     /**
      Create an instance of NRView
@@ -232,9 +235,13 @@ class NRView: UIView {
         button.titleLabel?.lineBreakMode = .byWordWrapping
         
         let halfHeight = button.bounds.height / 2
-        button.layer.cornerRadius = (style.cornerRadius > halfHeight) ? halfHeight : style.cornerRadius
+        button.layer.cornerRadius = min(halfHeight, style.cornerRadius)
+        button.layer.masksToBounds = true
         button.backgroundColor = style.backgroundColor
+        
+        button.setTitle(style.title, for: .normal)
         button.setTitleColor(style.textColor, for: .normal)
+        
         button.layer.borderWidth = style.borderWidth
         button.layer.borderColor = style.borderColor.cgColor
         if style.withShadow { button.shadow() }
@@ -248,10 +255,8 @@ class NRView: UIView {
         switch type {
             
         case .fade(let duration):
-            UIView.animate(withDuration: duration) {
-                self.alpha = 1
-            }
-            
+            fadeAnimation(duration: duration, alpha: 1)
+
         case .none:
             self.alpha = 1
         }
@@ -265,9 +270,7 @@ class NRView: UIView {
         switch type {
             
         case .fade(let duration):
-            UIView.animate(withDuration: duration) {
-                self.alpha = 0.0
-            }
+            fadeAnimation(duration: duration, alpha: 0.0)
             
         case .none:
             self.alpha = 1
@@ -287,9 +290,10 @@ class NRView: UIView {
 }
 
 
-// MARK: - Protocols
 
-protocol NRButtonStyle {
+// MARK: - NRButtonStyle
+// MARK: Protocols
+public protocol NRButtonStyle {
     var title: String { get }
     var cornerRadius: CGFloat { get }
     var withShadow: Bool { get }
@@ -299,34 +303,34 @@ protocol NRButtonStyle {
     var borderWidth: CGFloat { get }
 }
 
-// MARK: - Structs
-struct NRButtonStyleNone: NRButtonStyle {
-    static var `default` = NRButtonStyleNone(title: "Tap Me!", backgroundColor: .white, textColor: .blue)
-    let title: String
-    let cornerRadius: CGFloat = 0
-    let withShadow: Bool = false
-    let backgroundColor: UIColor
-    let textColor: UIColor
-    let borderWidth: CGFloat = 0
-    let borderColor: UIColor = .clear
+// MARK: Structs
+public struct NRButtonStyleNone: NRButtonStyle {
+    static var `default` = NRButtonStyleNone(title: "Button", backgroundColor: .white, textColor: .blue)
+    public let title: String
+    public let cornerRadius: CGFloat = 0
+    public let withShadow: Bool = false
+    public let backgroundColor: UIColor
+    public let textColor: UIColor
+    public let borderWidth: CGFloat = 0
+    public let borderColor: UIColor = .clear
 }
 
-struct NRButtonStyleRounded: NRButtonStyle {
-    let title: String
-    let cornerRadius: CGFloat
-    let withShadow: Bool
-    let backgroundColor: UIColor
-    let textColor: UIColor
-    let borderWidth: CGFloat = 0
-    let borderColor: UIColor = .clear
+public struct NRButtonStyleRounded: NRButtonStyle {
+    public let title: String
+    public let cornerRadius: CGFloat
+    public let withShadow: Bool
+    public let backgroundColor: UIColor
+    public let textColor: UIColor
+    public let borderWidth: CGFloat = 0
+    public let borderColor: UIColor = .clear
 }
 
-struct NRButtonStyleBorder: NRButtonStyle {
-    let title: String
-    let cornerRadius: CGFloat
-    let withShadow: Bool
-    let backgroundColor: UIColor
-    let textColor: UIColor
-    let borderWidth: CGFloat
-    let borderColor: UIColor
+public struct NRButtonStyleBorder: NRButtonStyle {
+    public let title: String
+    public let cornerRadius: CGFloat
+    public let withShadow: Bool
+    public let backgroundColor: UIColor
+    public let textColor: UIColor
+    public let borderWidth: CGFloat
+    public let borderColor: UIColor
 }
