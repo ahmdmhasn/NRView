@@ -18,8 +18,10 @@ class FirstViewController: UIViewController {
         
         // Initial view setup
         nrView.delegate = self
-        nrView.setText(title: "Internet Error",
-                       description: "Please check your internet connection then try again.")
+        nrView.setText(
+            title: "Internet Error",
+            description: "Please check your internet connection then try again."
+        )
 //        nrView.setImage(nil, withTintColor: nil)
 
         // Set colors
@@ -35,14 +37,11 @@ class FirstViewController: UIViewController {
 //        nrView.setButtonStyle(.none(color: .gray))
 
         // Rounded
-        nrView.setButtonStyle(
-            NRButtonStyleRounded(
-                title: "Try Again",
-                cornerRadius: 99,
-                withShadow: false,
-                backgroundColor: UIColor.blue.withAlphaComponent(0.2),
-                textColor: .blue
-            )
+        nrView.buttonStyle = NRButtonStyleRounded(
+            title: "Try Again",
+            cornerRadius: 5,
+            backgroundColor: UIColor.blue.withAlphaComponent(0.2),
+            textColor: .blue
         )
         
         // With Stroke

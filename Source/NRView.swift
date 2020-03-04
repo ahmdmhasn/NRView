@@ -17,9 +17,9 @@ public class NRView: UIView {
     // MARK: - Default Properties
     public struct NRProperties {
         var imageColor: UIColor? = nil
-        var textColor: UIColor = UIColor.init(red: 41 / 255, green: 32 / 255, blue: 23 / 255, alpha: 1)
+        var textColor: UIColor = UIColor.darkGray
         var buttonStyle: NRButtonStyle = NRButtonStyleNone.default
-        var image: UIImage? = UIImage(named: "image")
+        var image: UIImage? = UIImage(named: "placeholder_image")
     }
     
     public static var Properties = NRProperties()
@@ -28,11 +28,11 @@ public class NRView: UIView {
         case fade(_ duration: Double)
     }
     
-    // Mark: - Views
-    
+    // MARK: - Views
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.image = NRView.Properties.image
         return imageView
     }()
     
@@ -40,8 +40,7 @@ public class NRView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = NRView.Properties.textColor
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
         return label
     }()
     
@@ -49,8 +48,7 @@ public class NRView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = NRView.Properties.textColor
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         return label
     }()
 
@@ -61,7 +59,7 @@ public class NRView: UIView {
     }()
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel, descriptionLabel, button])
+        let stackView = UIStackView()
         stackView.alignment = .center
         stackView.axis = .vertical
         stackView.spacing = 12
@@ -76,21 +74,28 @@ public class NRView: UIView {
      Set image color
      */
     @IBInspectable public var imageColor : UIColor? = NRView.Properties.imageColor {
-        didSet { updateInterface() }
+        didSet { setImage(imageView.image, withTintColor: imageColor) }
     }
 
     /**
      Set text color
      */
     @IBInspectable public var textColor : UIColor = NRView.Properties.textColor {
-        didSet { updateInterface() }
+        didSet { [titleLabel, descriptionLabel].forEach{ $0.textColor = textColor } }
+    }
+    
+    /**
+     Set different styles for the button, set it to nil to hide the button
+     */
+    public var buttonStyle: NRButtonStyle? = NRView.Properties.buttonStyle {
+        didSet { updateButtonStyle() }
     }
     
     /**
      Add shaking animation when image is tapped
      */
     public var shakeImageOnClick: Bool = false {
-        didSet { updateInterface() }
+        didSet { shouldShakeImage(shakeImageOnClick) }
     }
         
     // MARK: - Init
@@ -105,14 +110,11 @@ public class NRView: UIView {
         commitInit()
     }
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        updateInterface()
-    }
-
     private func commitInit() {
         // Add StackView and set constraints
         self.addSubview(stackView)
+        [imageView, titleLabel, descriptionLabel, button].forEach{ stackView.addArrangedSubview($0) }
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -120,28 +122,10 @@ public class NRView: UIView {
         // Set ImageView constraints
         imageView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.4).isActive = true
         imageView.heightAnchor.constraint(lessThanOrEqualTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        // Update text colors
+        [titleLabel, descriptionLabel].forEach{ $0.textColor = textColor }
+    }
         
-        updateInterface()
-    }
-    
-    // Set default values
-    private func updateInterface() {
-        // Image View Color
-        self.setImage(NRView.Properties.image, withTintColor: imageColor)
-        // Text Color
-        self.titleLabel.textColor = textColor
-        self.descriptionLabel.textColor = textColor
-        // Image Shaking
-        imageView.isUserInteractionEnabled = shakeImageOnClick
-        if shakeImageOnClick {
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:))))
-        } else {
-            imageView.gestureRecognizers?.forEach{imageView.removeGestureRecognizer($0)}
-        }
-        // Button
-        self.setButtonStyle(NRView.Properties.buttonStyle)
-    }
-
     // MARK: - Public Handlers
     /**
      Create an instance of NRView
@@ -221,12 +205,11 @@ public class NRView: UIView {
     }
     
     /**
-     Set different styles for the button
-     - parameter style: choose your prefered style, set it to nil to hide the button
+     Apply `buttonStyle` to the view
      */
-    public func setButtonStyle(_ style: NRButtonStyle?) {
+    private func updateButtonStyle() {
         
-        guard let style = style else {
+        guard let style = buttonStyle else {
             button.isHidden = true
             return
         }
@@ -234,14 +217,15 @@ public class NRView: UIView {
         button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         button.titleLabel?.lineBreakMode = .byWordWrapping
         
-        let halfHeight = button.bounds.height / 2
+        layoutIfNeeded()
+        let halfHeight = button.bounds.size.height / 2
         button.layer.cornerRadius = min(halfHeight, style.cornerRadius)
-        button.layer.masksToBounds = true
+        button.layer.masksToBounds = style.cornerRadius != 0
         button.backgroundColor = style.backgroundColor
         
         button.setTitle(style.title, for: .normal)
         button.setTitleColor(style.textColor, for: .normal)
-        
+
         button.layer.borderWidth = style.borderWidth
         button.layer.borderColor = style.borderColor.cgColor
         if style.withShadow { button.shadow() }
@@ -277,8 +261,19 @@ public class NRView: UIView {
         }
     }
     
-    // MARK: - Private Handlers
-    
+    // MARK: - UI Helpers
+    private func shouldShakeImage(_ shakeImage: Bool) {
+        // Image Shaking
+        imageView.isUserInteractionEnabled = shakeImage
+        if shakeImageOnClick {
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:))))
+        } else {
+            imageView.gestureRecognizers?.forEach{imageView.removeGestureRecognizer($0)}
+        }
+    }
+
+
+    // MARK: - Private Actions
     @objc private func didTapButton(_ sender: UIButton) {
         delegate?.nrView(self, didPressButton: sender)
     }
@@ -318,7 +313,7 @@ public struct NRButtonStyleNone: NRButtonStyle {
 public struct NRButtonStyleRounded: NRButtonStyle {
     public let title: String
     public let cornerRadius: CGFloat
-    public let withShadow: Bool
+    public let withShadow: Bool = false
     public let backgroundColor: UIColor
     public let textColor: UIColor
     public let borderWidth: CGFloat = 0
@@ -328,7 +323,7 @@ public struct NRButtonStyleRounded: NRButtonStyle {
 public struct NRButtonStyleBorder: NRButtonStyle {
     public let title: String
     public let cornerRadius: CGFloat
-    public let withShadow: Bool
+    public let withShadow: Bool = false
     public let backgroundColor: UIColor
     public let textColor: UIColor
     public let borderWidth: CGFloat
