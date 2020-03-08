@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import NRView
+import NRView
 
 class FirstViewController: UIViewController {
 
@@ -15,7 +15,7 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         // Initial view setup
         nrView.delegate = self
         nrView.setText(
@@ -25,8 +25,8 @@ class FirstViewController: UIViewController {
 //        nrView.setImage(nil, withTintColor: nil)
 
         // Set colors
-        nrView.textColor = .gray
-        nrView.imageColor = .gray
+//        nrView.textColor = .gray
+//        nrView.imageColor = .gray
         
         // Add shakable animation when image tapped
         nrView.shakeImageOnClick = true
@@ -34,19 +34,17 @@ class FirstViewController: UIViewController {
         
         // Change button style
         // Default
-//        nrView.setButtonStyle(.none(color: .gray))
 
         // Rounded
-        nrView.buttonStyle = NRButtonStyleRounded(
-            title: "Try Again",
+        nrView.buttonStyle = ButtonStyle(
+            title: "Try again",
             cornerRadius: 5,
-            backgroundColor: UIColor.blue.withAlphaComponent(0.2),
-            textColor: .blue
+            backgroundColor: UIColor.blue.withAlphaComponent(0.1)
         )
         
         // With Stroke
-//        nrView.setButtonStyle(.stroke(cornerRadius: 5, withShadow: false, color: .darkGray, strokeWidth: 2))
 
+        
     }
 
     // MARK: - Handlers

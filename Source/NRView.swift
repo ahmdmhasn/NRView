@@ -16,10 +16,10 @@ public class NRView: UIView {
     
     // MARK: - Default Properties
     public struct NRProperties {
-        var imageColor: UIColor? = nil
-        var textColor: UIColor = UIColor.darkGray
-        var buttonStyle: NRButtonStyle = NRButtonStyleNone.default
-        var image: UIImage? = UIImage(named: "placeholder_image")
+        public var imageColor: UIColor? = nil
+        public var textColor: UIColor? = nil
+        public var buttonStyle: NRButtonStyle = ButtonStyle.default
+        public var image: UIImage? = UIImage(named: "placeholder_image")
     }
     
     public static var Properties = NRProperties()
@@ -27,45 +27,14 @@ public class NRView: UIView {
     public enum AnimationType {
         case fade(_ duration: Double)
     }
-    
+        
     // MARK: - Views
-    let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = NRView.Properties.image
-        return imageView
-    }()
-    
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
-        return label
-    }()
-    
-    let descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        return label
-    }()
-
-    let button: UIButton = {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .center
-        stackView.axis = .vertical
-        stackView.spacing = 12
-        return stackView
-    }()
-    
+    @IBOutlet var parentView: UIView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var button: UIButton!
+        
     // MARK: - Properties
     
     public weak var delegate: NRViewDelegate?
@@ -80,7 +49,7 @@ public class NRView: UIView {
     /**
      Set text color
      */
-    @IBInspectable public var textColor : UIColor = NRView.Properties.textColor {
+    @IBInspectable public var textColor : UIColor? = NRView.Properties.textColor {
         didSet { [titleLabel, descriptionLabel].forEach{ $0.textColor = textColor } }
     }
     
@@ -98,7 +67,7 @@ public class NRView: UIView {
         didSet { shouldShakeImage(shakeImageOnClick) }
     }
         
-    // MARK: - Init
+    // MARK: - View Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -112,27 +81,22 @@ public class NRView: UIView {
     
     private func commitInit() {
         // Add StackView and set constraints
-        self.addSubview(stackView)
-        [imageView, titleLabel, descriptionLabel, button].forEach{ stackView.addArrangedSubview($0) }
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85).isActive = true
-        stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        // Set ImageView constraints
-        imageView.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 0.4).isActive = true
-        imageView.heightAnchor.constraint(lessThanOrEqualTo: self.heightAnchor, multiplier: 0.4).isActive = true
-        // Update text colors
+        Bundle(for: NRView.self)
+            .loadNibNamed("\(NRView.self)", owner: self, options: nil)
+        addSubview(parentView)
+        parentView.frame = frame
+        parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
         [titleLabel, descriptionLabel].forEach{ $0.textColor = textColor }
     }
-        
+    
     // MARK: - Public Handlers
     /**
      Create an instance of NRView
      - parameter view: parent view in which the NRView will be added to.
      - parameter initiallyHidden: If you want NRView to be added but not visible after initialization, default value is false
      */
-    static func addToView(_ view: UIView, initiallyHidden: Bool = false) -> NRView {
+    public static func addToView(_ view: UIView, initiallyHidden: Bool = false) -> NRView {
         // Check if the view already have an instance of NRView
         for v in view.subviews {
             if v is NRView {
@@ -221,13 +185,15 @@ public class NRView: UIView {
         let halfHeight = button.bounds.size.height / 2
         button.layer.cornerRadius = min(halfHeight, style.cornerRadius)
         button.layer.masksToBounds = style.cornerRadius != 0
-        button.backgroundColor = style.backgroundColor
+        if let backgroundColor = style.backgroundColor { button.backgroundColor = backgroundColor }
         
         button.setTitle(style.title, for: .normal)
-        button.setTitleColor(style.textColor, for: .normal)
+        if let textColor = style.textColor { button.setTitleColor(textColor, for: .normal) }
 
         button.layer.borderWidth = style.borderWidth
-        button.layer.borderColor = style.borderColor.cgColor
+        
+        if let borderColor = style.borderColor { button.layer.borderColor = borderColor.cgColor }
+        
         if style.withShadow { button.shadow() }
     }
     
@@ -274,7 +240,7 @@ public class NRView: UIView {
 
 
     // MARK: - Private Actions
-    @objc private func didTapButton(_ sender: UIButton) {
+    @IBAction private func didTapButton(_ sender: UIButton) {
         delegate?.nrView(self, didPressButton: sender)
     }
     
@@ -292,40 +258,38 @@ public protocol NRButtonStyle {
     var title: String { get }
     var cornerRadius: CGFloat { get }
     var withShadow: Bool { get }
-    var backgroundColor: UIColor { get }
-    var textColor: UIColor { get }
-    var borderColor: UIColor { get }
+    var backgroundColor: UIColor? { get }
+    var textColor: UIColor? { get }
+    var borderColor: UIColor? { get }
     var borderWidth: CGFloat { get }
 }
 
 // MARK: Structs
-public struct NRButtonStyleNone: NRButtonStyle {
-    static var `default` = NRButtonStyleNone(title: "Button", backgroundColor: .white, textColor: .blue)
-    public let title: String
-    public let cornerRadius: CGFloat = 0
-    public let withShadow: Bool = false
-    public let backgroundColor: UIColor
-    public let textColor: UIColor
-    public let borderWidth: CGFloat = 0
-    public let borderColor: UIColor = .clear
-}
-
-public struct NRButtonStyleRounded: NRButtonStyle {
+public struct ButtonStyle: NRButtonStyle {
+    public static var `default` = ButtonStyle(title: "Button", cornerRadius: 3)
     public let title: String
     public let cornerRadius: CGFloat
-    public let withShadow: Bool = false
-    public let backgroundColor: UIColor
-    public let textColor: UIColor
-    public let borderWidth: CGFloat = 0
-    public let borderColor: UIColor = .clear
-}
-
-public struct NRButtonStyleBorder: NRButtonStyle {
-    public let title: String
-    public let cornerRadius: CGFloat
-    public let withShadow: Bool = false
-    public let backgroundColor: UIColor
-    public let textColor: UIColor
+    public let withShadow: Bool
+    public let backgroundColor: UIColor?
+    public let textColor: UIColor?
     public let borderWidth: CGFloat
-    public let borderColor: UIColor
+    public let borderColor: UIColor?
+    
+    public init(
+        title: String = "",
+        cornerRadius: CGFloat = 0,
+        withShadow: Bool = false,
+        backgroundColor: UIColor? = nil,
+        textColor: UIColor? = nil,
+        borderWidth: CGFloat = 0,
+        borderColor: UIColor? = nil
+    ) {
+        self.title = title
+        self.cornerRadius = cornerRadius
+        self.withShadow = withShadow
+        self.backgroundColor = backgroundColor
+        self.textColor = textColor
+        self.borderWidth = borderWidth
+        self.borderColor = borderColor
+    }
 }

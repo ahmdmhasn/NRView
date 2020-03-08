@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02BC8102241501A10026D88D /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BC8101241501A10026D88D /* NRView.xib */; };
 		815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815DFC1823959F2700A8F1AC /* Resources.xcassets */; };
 		815DFC702395A74200A8F1AC /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
 		81C19A582391DB530047EBEA /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C19A4E2391DB530047EBEA /* NRView.framework */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02BC8101241501A10026D88D /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
 		815DFC1823959F2700A8F1AC /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 		81C19A4E2391DB530047EBEA /* NRView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NRView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C19A512391DB530047EBEA /* NRView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRView.h; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		81C19A682391DB7B0047EBEA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				02BC8101241501A10026D88D /* NRView.xib */,
 				81C19A6A2391DB970047EBEA /* NRView.swift */,
 				81C19A6B2391DB970047EBEA /* UIView+Ext.swift */,
 				815DFC1823959F2700A8F1AC /* Resources.xcassets */,
@@ -197,6 +200,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02BC8102241501A10026D88D /* NRView.xib in Resources */,
 				815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,7 +375,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NRView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,7 +403,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NRView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
