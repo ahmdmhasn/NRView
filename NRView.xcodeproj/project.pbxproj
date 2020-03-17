@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02974D31242112FF00B3ABF8 /* NRButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02974D30242112FF00B3ABF8 /* NRButtonStyle.swift */; };
+		02974D3324211C1300B3ABF8 /* NRView+enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02974D3224211C1300B3ABF8 /* NRView+enum.swift */; };
 		02BC8102241501A10026D88D /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BC8101241501A10026D88D /* NRView.xib */; };
 		815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815DFC1823959F2700A8F1AC /* Resources.xcassets */; };
 		815DFC702395A74200A8F1AC /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		02974D30242112FF00B3ABF8 /* NRButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRButtonStyle.swift; sourceTree = "<group>"; };
+		02974D3224211C1300B3ABF8 /* NRView+enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NRView+enum.swift"; sourceTree = "<group>"; };
 		02BC8101241501A10026D88D /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
 		815DFC1823959F2700A8F1AC /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 		81C19A4E2391DB530047EBEA /* NRView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NRView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 				81C19A6B2391DB970047EBEA /* UIView+Ext.swift */,
 				815DFC1823959F2700A8F1AC /* Resources.xcassets */,
 				02974D30242112FF00B3ABF8 /* NRButtonStyle.swift */,
+				02974D3224211C1300B3ABF8 /* NRView+enum.swift */,
 			);
 			name = Source;
 			path = ../Source;
@@ -225,6 +228,7 @@
 				815DFC702395A74200A8F1AC /* NRView.swift in Sources */,
 				81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */,
 				02974D31242112FF00B3ABF8 /* NRButtonStyle.swift in Sources */,
+				02974D3324211C1300B3ABF8 /* NRView+enum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

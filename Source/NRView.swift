@@ -29,13 +29,14 @@ public class NRView: UIView {
     case fade(_ duration: Double)
   }
   
-  // MARK: - Views
+  // MARK: - Outlets
   
   @IBOutlet var parentView: UIView!
   @IBOutlet var imageView: UIImageView!
   @IBOutlet var titleLabel: UILabel!
   @IBOutlet var descriptionLabel: UILabel!
   @IBOutlet var button: UIButton!
+  @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
   
   // MARK: - Properties
   
@@ -204,6 +205,13 @@ public class NRView: UIView {
     }
   }
   
+  /**
+   Set the image width value, cannot be larger than 60% of the view total width
+   - parameter value: new value, default is 220
+   */
+  public func setImageWidth(_ type: ImageWidthType) {
+    imageWidthConstraint.constant = type.value
+  }
     
 }
 

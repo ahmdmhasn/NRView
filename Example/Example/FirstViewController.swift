@@ -44,6 +44,8 @@ class FirstViewController: UIViewController {
         
         // With Stroke
 
+      
+        nrView.setImageWidth(.any(35))
         
     }
 
