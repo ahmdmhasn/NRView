@@ -12,10 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NRView" customModule="NRView" customModuleProvider="target">
             <connections>
                 <outlet property="button" destination="SDc-ke-onI" id="PsL-4K-wlz"/>
-                <outlet property="descriptionLabel" destination="n1u-fh-L2R" id="4O3-qQ-5W9"/>
                 <outlet property="imageView" destination="laJ-RQ-oAr" id="Tbf-fj-jn8"/>
                 <outlet property="imageWidthConstraint" destination="ZYc-u2-93g" id="NKe-Bb-OrC"/>
                 <outlet property="parentView" destination="iN0-l3-epB" id="623-EM-KyC"/>
+                <outlet property="subtitleLabel" destination="n1u-fh-L2R" id="4O3-qQ-5W9"/>
                 <outlet property="titleLabel" destination="U6B-Oi-9aD" id="5SS-h1-Bac"/>
             </connections>
         </placeholder>
@@ -30,8 +30,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GfF-yw-Soi" userLabel="Content View">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="91t-Kk-Fft">
-                                    <rect key="frame" x="41.333333333333343" y="245.66666666666666" width="331.33333333333326" height="326.66666666666674"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="91t-Kk-Fft">
+                                    <rect key="frame" x="41.333333333333343" y="253.66666666666666" width="331.33333333333326" height="310.66666666666674"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_image" translatesAutoresizingMaskIntoConstraints="NO" id="laJ-RQ-oAr">
                                             <rect key="frame" x="55.666666666666657" y="0.0" width="219.99999999999997" height="220"/>
@@ -41,20 +41,25 @@
                                                 <constraint firstAttribute="width" secondItem="laJ-RQ-oAr" secondAttribute="height" id="o2o-oi-NQ7"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6B-Oi-9aD">
-                                            <rect key="frame" x="144" y="231.99999999999994" width="43.666666666666657" height="20.333333333333343"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" name="NR Background Color"/>
-                                            <color key="highlightedColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1u-fh-L2R">
-                                            <rect key="frame" x="145" y="264.33333333333331" width="41.666666666666657" height="20.333333333333314"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" name="NR Background Color"/>
-                                            <color key="highlightedColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2qG-6O-bbH">
+                                            <rect key="frame" x="144" y="227.99999999999994" width="43.666666666666657" height="44.666666666666686"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6B-Oi-9aD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="43.666666666666664" height="20.333333333333332"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <color key="textColor" name="NR Background Color"/>
+                                                    <color key="highlightedColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n1u-fh-L2R">
+                                                    <rect key="frame" x="0.0" y="24.333333333333371" width="43.666666666666664" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" name="NR Background Color"/>
+                                                    <color key="highlightedColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDc-ke-onI">
-                                            <rect key="frame" x="142.66666666666666" y="296.66666666666669" width="46" height="30"/>
+                                            <rect key="frame" x="142.66666666666666" y="280.66666666666669" width="46" height="30"/>
                                             <color key="tintColor" name="NR Text Color"/>
                                             <state key="normal" title="Button"/>
                                             <connections>
@@ -69,8 +74,8 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="91t-Kk-Fft" firstAttribute="top" relation="greaterThanOrEqual" secondItem="GfF-yw-Soi" secondAttribute="top" id="3C2-eH-ho9"/>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="91t-Kk-Fft" secondAttribute="bottom" id="FpO-3T-Wkf"/>
+                                <constraint firstItem="91t-Kk-Fft" firstAttribute="top" relation="greaterThanOrEqual" secondItem="GfF-yw-Soi" secondAttribute="top" constant="16" id="3C2-eH-ho9"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="91t-Kk-Fft" secondAttribute="bottom" constant="16" id="FpO-3T-Wkf"/>
                                 <constraint firstItem="91t-Kk-Fft" firstAttribute="width" secondItem="GfF-yw-Soi" secondAttribute="width" multiplier="0.8" priority="999" id="il1-gJ-wrC"/>
                                 <constraint firstItem="91t-Kk-Fft" firstAttribute="centerY" secondItem="GfF-yw-Soi" secondAttribute="centerY" id="kE8-xH-4vK"/>
                                 <constraint firstItem="91t-Kk-Fft" firstAttribute="centerX" secondItem="GfF-yw-Soi" secondAttribute="centerX" id="poV-YC-z4f"/>

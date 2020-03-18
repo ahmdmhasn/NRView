@@ -8,77 +8,65 @@
 
 import UIKit
 
-public protocol NRViewDelegate: class {
-  func nrView(_ view: NRView, didPressButton sender: UIButton)
-}
-
-public class NRView: UIView {
+@IBDesignable public class NRView: UIView {
   
   // MARK: - Default Properties
-  
-  public struct NRProperties {
-    public var imageColor: UIColor? = nil
-    public var textColor: UIColor? = nil
-    public var buttonStyle: NRButtonStyle = ButtonStyle.default
-    public var image: UIImage? = UIImage(named: "placeholder_image")
+    
+  /// NRView settings
+  open var settings: NRSettings = .default {
+    didSet {
+      update()
+    }
   }
-  
-  public static var Properties = NRProperties()
   
   public enum AnimationType {
     case fade(_ duration: Double)
   }
+  
+  // MARK: - Touch recognition
+  
+  /// Closure will be called when user tapes the button. The button argument is passed to the closure.
+  open var didTapButton: ((UIButton)->())?
   
   // MARK: - Outlets
   
   @IBOutlet var parentView: UIView!
   @IBOutlet var imageView: UIImageView!
   @IBOutlet var titleLabel: UILabel!
-  @IBOutlet var descriptionLabel: UILabel!
+  @IBOutlet var subtitleLabel: UILabel!
   @IBOutlet var button: UIButton!
   @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
-  
-  // MARK: - Properties
-  
-  public weak var delegate: NRViewDelegate?
-  
-  /**
-   Set image color
-   */
-  @IBInspectable public var imageColor : UIColor? = NRView.Properties.imageColor {
-    didSet { setImage(imageView.image, withTintColor: imageColor) }
-  }
-  
-  /**
-   Set text color
-   */
-  @IBInspectable public var textColor : UIColor? = NRView.Properties.textColor {
-    didSet { [titleLabel, descriptionLabel].forEach{ $0.textColor = textColor } }
-  }
-  
-  /**
-   Set different styles for the button, set it to nil to hide the button
-   */
-  public var buttonStyle: NRButtonStyle? = NRView.Properties.buttonStyle {
-    didSet { updateButtonStyle() }
-  }
-  
-  /**
-   Add shaking animation when image is tapped
-   */
-  public var shakeImageOnClick: Bool = false {
-    didSet { shouldShakeImage(shakeImageOnClick) }
-  }
-  
+    
   // MARK: - View Lifecycle
   
-  override init(frame: CGRect) {
+  /**
+  Initializes and returns a newly allocated NRView object.
+  */
+  public convenience init(settings: NRSettings = .default) {
+    self.init(frame: .zero, settings: settings)
+  }
+
+  /**
+
+  Initializes and returns a newly allocated NRView object with the specified frame rectangle.
+
+  - parameter frame: The frame rectangle for the view.
+  
+  */
+  override public convenience init(frame: CGRect) {
+    self.init(frame: frame, settings: .default)
+  }
+
+  public init(frame: CGRect, settings: NRSettings) {
     super.init(frame: frame)
     commitInit()
+    self.settings = settings
+    update()
   }
   
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
+  /// Initializes and returns a newly allocated NRView object.
+  required public init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
     commitInit()
   }
   
@@ -89,8 +77,11 @@ public class NRView: UIView {
     addSubview(parentView)
     parentView.frame = frame
     parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    
-    [titleLabel, descriptionLabel].forEach{ $0.textColor = textColor }
+  }
+  
+  public override func layoutSubviews() {
+    super.layoutSubviews()
+    update()
   }
   
   // MARK: - Class Initialization
@@ -99,7 +90,7 @@ public class NRView: UIView {
    - parameter view: parent view in which the NRView will be added to.
    - parameter initiallyHidden: If you want NRView to be added but not visible after initialization, default value is false
    */
-  public static func addToView(_ view: UIView, initiallyHidden: Bool = false) -> NRView {
+  public static func addToView(_ view: UIView, settings: NRSettings = .default, initiallyHidden: Bool = true) -> NRView {
     // Check if the view already have an instance of NRView
     for v in view.subviews {
       if v is NRView {
@@ -107,7 +98,7 @@ public class NRView: UIView {
       }
     }
     // Create instance and set visibility
-    let nrView = NRView(frame: CGRect.zero)
+    let nrView = NRView(settings: settings)
     nrView.alpha = initiallyHidden ? 0 : 1
     // Add to subview
     view.addSubview(nrView)
@@ -179,16 +170,21 @@ public class NRView: UIView {
   // MARK: - Configure View
   
   /**
-   Set text fot NRView
-   - parameter title: title text. set it nil to hide the title
-   - parameter description: description text. set it nil to hide the description
+   Updates the view for the selected settings.
    */
-  public func setText(title: String?, description: String?) {
-    self.titleLabel.text = title
-    self.descriptionLabel.text = description
-    // Hide title | description if empty or nil
-    self.titleLabel.isHidden = (title?.isEmpty ?? true)
-    self.descriptionLabel.isHidden = (description?.isEmpty ?? true)
+  open func update() {
+    
+    titleLabel.text = settings.titleText
+    titleLabel.textColor = settings.titleColor
+    
+    subtitleLabel.text = settings.subtitleText
+    subtitleLabel.textColor = settings.subtitleColor
+    
+    updateButtonStyle()
+    
+    shouldShakeImage(shakeImageOnClick)
+    
+    setImage(settings.image, withTintColor: settings.imageColor)
   }
   
   /**
@@ -203,16 +199,51 @@ public class NRView: UIView {
     } else {
       self.imageView.image = image
     }
+    /// Update image width
+    imageWidthConstraint.constant = settings.imageWidthType.value
+  }
+      
+  // MARK: - Interface Builder
+
+  /// Image color
+  @IBInspectable public var imageColor : UIColor? = NRDefaultSettings.imageColor {
+    didSet { settings.imageColor = imageColor }
   }
   
-  /**
-   Set the image width value, cannot be larger than 60% of the view total width
-   - parameter value: new value, default is 220
-   */
-  public func setImageWidth(_ type: ImageWidthType) {
-    imageWidthConstraint.constant = type.value
+  /// NRView image
+  @IBInspectable public var image: UIImage? = NRDefaultSettings.image {
+    didSet { settings.image = image }
   }
-    
+  
+  /// Title text
+  @IBInspectable public var titleText: String? = NRDefaultSettings.text {
+    didSet { settings.titleText = titleText }
+  }
+  
+  /// Subtitle text
+  @IBInspectable public var subtitleText: String? = NRDefaultSettings.text {
+    didSet { settings.subtitleText = subtitleText }
+  }
+
+  /// Text color
+  @IBInspectable public var titleColor : UIColor? = NRDefaultSettings.textColor {
+    didSet { settings.titleColor = titleColor }
+  }
+  
+  @IBInspectable public var subtitleColor : UIColor? = NRDefaultSettings.textColor {
+    didSet { settings.subtitleColor = subtitleColor }
+  }
+  
+  /// Add shaking animation when image is tapped
+  @IBInspectable public var shakeImageOnClick: Bool = NRDefaultSettings.enableImageShaking {
+    didSet { settings.enableImageShaking = shakeImageOnClick }
+  }
+  
+  public override func prepareForInterfaceBuilder() {
+    super.prepareForInterfaceBuilder()
+    update()
+  }
+  
 }
 
 // MARK: - IB Actions
@@ -220,13 +251,13 @@ public class NRView: UIView {
 private extension NRView {
   
   @IBAction func didTapButton(_ sender: UIButton) {
-    delegate?.nrView(self, didPressButton: sender)
+    self.didTapButton?(sender)
   }
   
   @objc func imageViewTapped(_ sender: UIGestureRecognizer) {
     imageView.shake()
   }
-  
+    
 }
 
 // MARK: - UI Helpers
@@ -238,7 +269,7 @@ private extension NRView {
    */
   func updateButtonStyle() {
     
-    guard let style = buttonStyle else {
+    guard let buttonSettings = settings.buttonSettings else {
       button.isHidden = true
       return
     }
@@ -248,18 +279,18 @@ private extension NRView {
     
     layoutIfNeeded()
     let halfHeight = button.bounds.size.height / 2
-    button.layer.cornerRadius = min(halfHeight, style.cornerRadius)
-    button.layer.masksToBounds = style.cornerRadius != 0
-    if let backgroundColor = style.backgroundColor { button.backgroundColor = backgroundColor }
+    button.layer.cornerRadius = min(halfHeight, buttonSettings.cornerRadius)
+    button.layer.masksToBounds = buttonSettings.cornerRadius != 0
+    if let backgroundColor = buttonSettings.backgroundColor { button.backgroundColor = backgroundColor }
     
-    button.setTitle(style.title, for: .normal)
-    if let textColor = style.textColor { button.setTitleColor(textColor, for: .normal) }
+    button.setTitle(buttonSettings.title, for: .normal)
+    if let textColor = buttonSettings.textColor { button.setTitleColor(textColor, for: .normal) }
     
-    button.layer.borderWidth = style.borderWidth
+    button.layer.borderWidth = buttonSettings.borderWidth
     
-    if let borderColor = style.borderColor { button.layer.borderColor = borderColor.cgColor }
+    if let borderColor = buttonSettings.borderColor { button.layer.borderColor = borderColor.cgColor }
     
-    if style.withShadow { button.shadow() }
+    if buttonSettings.withShadow { button.shadow() }
   }
 
   func shouldShakeImage(_ shakeImage: Bool) {
