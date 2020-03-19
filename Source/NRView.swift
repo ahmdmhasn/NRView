@@ -19,6 +19,7 @@ import UIKit
     }
   }
   
+  /// Animation type used for show/ hide NRView.
   public enum AnimationType {
     case fade(_ duration: Double)
   }
