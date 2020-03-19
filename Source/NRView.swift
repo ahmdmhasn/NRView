@@ -68,7 +68,7 @@ import UIKit
   
   public override func awakeFromNib() {
     super.awakeFromNib()
-    updateParentFrame()
+    configureParentFrame()
   }
   
   private func commitInit() {
@@ -76,10 +76,10 @@ import UIKit
     Bundle(for: NRView.self)
       .loadNibNamed("\(NRView.self)", owner: self, options: nil)
     addSubview(parentView)
-    updateParentFrame()
+    configureParentFrame()
   }
   
-  private func updateParentFrame() {
+  private func configureParentFrame() {
     parentView.frame = frame
     parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
   }
@@ -187,9 +187,7 @@ import UIKit
         
     backgroundColor = settings.backgroundColor
 
-    updateButtonStyle()
-    
-    shouldShakeImage(shakeImageOnClick)
+    updateButtonSettings()
     
     setImage(settings.image, withTintColor: settings.imageColor)
   }
@@ -231,6 +229,11 @@ import UIKit
   @IBInspectable public var subtitleText: String? = NRDefaultSettings.text {
     didSet { settings.subtitleText = subtitleText }
   }
+  
+  /// Button title
+  @IBInspectable public var buttonTitle: String = NRDefaultSettings.buttonSettings.title {
+    didSet { settings.buttonSettings?.title = buttonTitle }
+  }
 
   /// Text color
   @IBInspectable public var titleColor : UIColor? = NRDefaultSettings.textColor {
@@ -240,12 +243,7 @@ import UIKit
   @IBInspectable public var subtitleColor : UIColor? = NRDefaultSettings.textColor {
     didSet { settings.subtitleColor = subtitleColor }
   }
-  
-  /// Add shaking animation when image is tapped
-  @IBInspectable public var shakeImageOnClick: Bool = NRDefaultSettings.enableImageShaking {
-    didSet { settings.enableImageShaking = shakeImageOnClick }
-  }
-  
+    
   /// Background color of NRView, default is clear
   @IBInspectable public var bgColor: UIColor = NRDefaultSettings.backgroundColor {
     didSet { settings.backgroundColor = bgColor }
@@ -265,11 +263,7 @@ private extension NRView {
   @IBAction func didTapButton(_ sender: UIButton) {
     self.didTapButton?(sender)
   }
-  
-  @objc func imageViewTapped(_ sender: UIGestureRecognizer) {
-    imageView.shake()
-  }
-    
+      
 }
 
 // MARK: - UI Helpers
@@ -277,42 +271,33 @@ private extension NRView {
 private extension NRView {
   
   /**
-   Apply `buttonStyle` to the view
+   Apply `buttonSettings` to the view
    */
-  func updateButtonStyle() {
+  func updateButtonSettings() {
     
     guard let buttonSettings = settings.buttonSettings else {
       button.isHidden = true
       return
     }
     
-    button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-    button.titleLabel?.lineBreakMode = .byWordWrapping
-    
+    let edgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+    button.contentEdgeInsets = edgeInsets
+
+    /// Apply corner radius to the button, It should not be higher than the half height
     layoutIfNeeded()
     let halfHeight = button.bounds.size.height / 2
     button.layer.cornerRadius = min(halfHeight, buttonSettings.cornerRadius)
     button.layer.masksToBounds = buttonSettings.cornerRadius != 0
-    if let backgroundColor = buttonSettings.backgroundColor { button.backgroundColor = backgroundColor }
+    button.backgroundColor = buttonSettings.backgroundColor
     
-    button.setTitle(buttonSettings.title, for: .normal)
-    if let textColor = buttonSettings.textColor { button.setTitleColor(textColor, for: .normal) }
+    button.setTitle(buttonSettings.title)
+    button.tintColor = buttonSettings.textColor
     
     button.layer.borderWidth = buttonSettings.borderWidth
     
-    if let borderColor = buttonSettings.borderColor { button.layer.borderColor = borderColor.cgColor }
+    button.layer.borderColor = buttonSettings.borderColor.cgColor
     
     if buttonSettings.withShadow { button.shadow() }
-  }
-
-  func shouldShakeImage(_ shakeImage: Bool) {
-    // Image Shaking
-    imageView.isUserInteractionEnabled = shakeImage
-    if shakeImageOnClick {
-      imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageViewTapped(_:))))
-    } else {
-      imageView.gestureRecognizers?.forEach{imageView.removeGestureRecognizer($0)}
-    }
   }
 
 }

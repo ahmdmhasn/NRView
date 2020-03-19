@@ -32,8 +32,8 @@ struct NRDefaultSettings {
   /// Default background color
   static let backgroundColor = UIColor.clear
   
-  /// default button style
-  static let buttonStyle = NRButtonSettings.default
+  /// default button settings
+  static let buttonSettings = NRButtonSettings.default
 
   /// Boolean to enable/ disable image shaking on click
   static let enableImageShaking = false

@@ -15,29 +15,14 @@ public struct NRButtonSettings {
   
   public static var `default` = NRButtonSettings()
   
-  public var title: String
-  public var cornerRadius: CGFloat
-  public var withShadow: Bool
-  public var backgroundColor: UIColor?
-  public var textColor: UIColor?
-  public var borderWidth: CGFloat
-  public var borderColor: UIColor?
+  public init() {}
+
+  public var title: String = "Button"
+  public var cornerRadius: CGFloat = 0
+  public var withShadow: Bool = false
+  public var backgroundColor: UIColor = .clear
+  public var textColor: UIColor = UIApplication.shared.windows.first?.tintColor ?? .black
+  public var borderWidth: CGFloat = 0
+  public var borderColor: UIColor = .clear
   
-  public init(
-    title: String = "",
-    cornerRadius: CGFloat = 3,
-    withShadow: Bool = false,
-    backgroundColor: UIColor? = nil,
-    textColor: UIColor? = nil,
-    borderWidth: CGFloat = 0,
-    borderColor: UIColor? = nil
-  ) {
-    self.title = title
-    self.cornerRadius = cornerRadius
-    self.withShadow = withShadow
-    self.backgroundColor = backgroundColor
-    self.textColor = textColor
-    self.borderWidth = borderWidth
-    self.borderColor = borderColor
-  }
 }

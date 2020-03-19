@@ -8,19 +8,19 @@
 
 import UIKit
 
-struct ExampleModel {
+struct VCModel {
   let title: String
-  let segueIdentifier: String
+  let identifier: String
   
-  static let allItems: [ExampleModel] = [
-    ExampleModel(title: "Instance Example", segueIdentifier: "NormalViewControllerSegue"),
-    ExampleModel(title: "Static Example", segueIdentifier: "ClassViewControllerSegue"),
+  static let allItems: [VCModel] = [
+    VCModel(title: "Instance Example", identifier: "\(NIBLoadingExViewController.self)"),
+    VCModel(title: "Static Example", identifier: "\(ClassInitViewController.self)"),
   ]
 }
 
 class HomeViewController: UITableViewController {
   
-  var list: [ExampleModel] = ExampleModel.allItems
+  var list: [VCModel] = VCModel.allItems
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,8 +43,10 @@ extension HomeViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let segueIdentifier = list[indexPath.row].segueIdentifier
-    performSegue(withIdentifier: segueIdentifier, sender: self)
+    let identifier = list[indexPath.row].identifier
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
+    navigationController?.pushViewController(viewController, animated: true)
   }
   
 }

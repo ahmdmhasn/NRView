@@ -39,7 +39,7 @@ public struct NRSettings {
   public var backgroundColor = NRDefaultSettings.backgroundColor
 
   /// Defines how the button will be shown, set it to nil to hide the button
-  public var buttonSettings: NRButtonSettings? = NRButtonSettings.default
+  public var buttonSettings: NRButtonSettings? = NRDefaultSettings.buttonSettings
   
   /// Boolean to enable/ disable image shaking on click, default is false
   public var enableImageShaking = NRDefaultSettings.enableImageShaking

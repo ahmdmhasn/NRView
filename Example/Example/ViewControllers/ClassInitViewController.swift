@@ -22,12 +22,12 @@ class ClassInitViewController: UIViewController {
     settings.imageColor = .gray
     settings.imageWidthType = .compact
     // Set Button
-    settings.buttonSettings = NRButtonSettings(
-      title: "Try Again",
-      cornerRadius: 3,
-      backgroundColor: UIColor.blue.withAlphaComponent(0.1),
-      textColor: .blue
-    )
+    var buttonSettings = NRButtonSettings()
+    buttonSettings.title = "Try Again"
+    buttonSettings.cornerRadius = 3
+    buttonSettings.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
+    buttonSettings.textColor = .blue
+    settings.buttonSettings = buttonSettings
     return settings
   }()
   

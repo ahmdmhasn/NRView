@@ -9,14 +9,19 @@
 import UIKit
 import NRView
 
-class FirstViewController: UIViewController {
+class NIBLoadingExViewController: UIViewController {
   
   @IBOutlet weak var nrView: NRView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    nrView.settings.buttonSettings = NRButtonSettings(title: "Request Line", cornerRadius: 99, backgroundColor: .red, textColor: .white)
+    var buttonSettings = NRButtonSettings()
+    buttonSettings.title = "Request Line"
+    buttonSettings.cornerRadius = 99
+    buttonSettings.backgroundColor = .red
+    buttonSettings.textColor = .white
+    nrView.settings.buttonSettings = buttonSettings
     
     nrView.settings.imageWidthType = .any(50)
     
