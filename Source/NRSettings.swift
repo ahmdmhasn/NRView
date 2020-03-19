@@ -35,6 +35,9 @@ public struct NRSettings {
   /// Color of subtitle label
   public var subtitleColor: UIColor? = NRDefaultSettings.textColor
   
+  /// Default background color
+  public var backgroundColor = NRDefaultSettings.backgroundColor
+
   /// Defines how the button will be shown, set it to nil to hide the button
   public var buttonSettings: NRButtonSettings? = NRButtonSettings.default
   
@@ -43,5 +46,6 @@ public struct NRSettings {
   
   /// Image width type, default is regular
   public var imageWidthType = NRDefaultSettings.imageWidthType
+  
   
 }

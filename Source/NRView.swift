@@ -47,11 +47,8 @@ import UIKit
   }
 
   /**
-
   Initializes and returns a newly allocated NRView object with the specified frame rectangle.
-
   - parameter frame: The frame rectangle for the view.
-  
   */
   override public convenience init(frame: CGRect) {
     self.init(frame: frame, settings: .default)
@@ -61,7 +58,6 @@ import UIKit
     super.init(frame: frame)
     commitInit()
     self.settings = settings
-    update()
   }
   
   /// Initializes and returns a newly allocated NRView object.
@@ -70,11 +66,20 @@ import UIKit
     commitInit()
   }
   
+  public override func awakeFromNib() {
+    super.awakeFromNib()
+    updateParentFrame()
+  }
+  
   private func commitInit() {
     // Add StackView and set constraints
     Bundle(for: NRView.self)
       .loadNibNamed("\(NRView.self)", owner: self, options: nil)
     addSubview(parentView)
+    updateParentFrame()
+  }
+  
+  private func updateParentFrame() {
     parentView.frame = frame
     parentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
   }
@@ -179,7 +184,9 @@ import UIKit
     
     subtitleLabel.text = settings.subtitleText
     subtitleLabel.textColor = settings.subtitleColor
-    
+        
+    backgroundColor = settings.backgroundColor
+
     updateButtonStyle()
     
     shouldShakeImage(shakeImageOnClick)
@@ -239,6 +246,11 @@ import UIKit
     didSet { settings.enableImageShaking = shakeImageOnClick }
   }
   
+  /// Background color of NRView, default is clear
+  @IBInspectable public var bgColor: UIColor = NRDefaultSettings.backgroundColor {
+    didSet { settings.backgroundColor = bgColor }
+  }
+
   public override func prepareForInterfaceBuilder() {
     super.prepareForInterfaceBuilder()
     update()

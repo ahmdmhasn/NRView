@@ -29,6 +29,9 @@ struct NRDefaultSettings {
   /// Default text.
   static let text: String? = nil
   
+  /// Default background color
+  static let backgroundColor = UIColor.clear
+  
   /// default button style
   static let buttonStyle = NRButtonSettings.default
 

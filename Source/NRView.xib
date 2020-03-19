@@ -94,7 +94,7 @@
                     <viewLayoutGuide key="frameLayoutGuide" id="PEy-BO-pgl"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" name="NR Background Color"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="laJ-RQ-oAr" firstAttribute="height" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.618" priority="900" id="20W-Z7-CBU"/>
                 <constraint firstItem="0xE-zu-6ZP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="81s-bs-JNB"/>
