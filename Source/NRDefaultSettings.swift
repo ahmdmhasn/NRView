@@ -21,7 +21,7 @@ struct NRDefaultSettings {
   static let imageColor: UIColor? = nil
   
   /// image used for NRView
-  static let image = UIImage(named: "placeholder_image")
+  static let image = UIImage(named: "placeholder_image", in: Bundle(for: NRView.self), compatibleWith: nil)
   
   /// Color of the text.
   static let textColor = defaultColor
