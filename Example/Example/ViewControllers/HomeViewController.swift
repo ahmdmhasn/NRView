@@ -15,6 +15,8 @@ struct VCModel {
   static let allItems: [VCModel] = [
     VCModel(title: "Instance Example", identifier: "\(NIBLoadingExViewController.self)"),
     VCModel(title: "Static Example", identifier: "\(ClassInitViewController.self)"),
+    VCModel(title: "LinkedIn Post", identifier: "\(PostDetailsViewController.self)"),
+    VCModel(title: "Items Selection", identifier: "\(ItemsViewController.self)"),
   ]
 }
 

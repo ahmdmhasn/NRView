@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		02974D36242120D100B3ABF8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02974D35242120D100B3ABF8 /* HomeViewController.swift */; };
+		02D29C1A24239CDA0076C0FB /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D29C1924239CDA0076C0FB /* PostDetailsViewController.swift */; };
+		02D29C1E24239E600076C0FB /* NRTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D29C1D24239E600076C0FB /* NRTableViewCell.swift */; };
+		02D29C202423A6BA0076C0FB /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D29C1F2423A6BA0076C0FB /* ItemsViewController.swift */; };
+		02D29C222423A9450076C0FB /* NRCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D29C212423A9450076C0FB /* NRCollectionViewCell.swift */; };
 		814B9B432395A9E300820768 /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814B9B402395A9DB00820768 /* NRView.framework */; };
 		814B9B442395A9E300820768 /* NRView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 814B9B402395A9DB00820768 /* NRView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		814B9B592395C10400820768 /* ClassInitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B9B582395C10300820768 /* ClassInitViewController.swift */; };
@@ -34,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		02974D35242120D100B3ABF8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		02D29C1924239CDA0076C0FB /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
+		02D29C1D24239E600076C0FB /* NRTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRTableViewCell.swift; sourceTree = "<group>"; };
+		02D29C1F2423A6BA0076C0FB /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
+		02D29C212423A9450076C0FB /* NRCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRCollectionViewCell.swift; sourceTree = "<group>"; };
 		814B9B402395A9DB00820768 /* NRView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NRView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		814B9B582395C10300820768 /* ClassInitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInitViewController.swift; sourceTree = "<group>"; };
 		815DFC432395A21F00A8F1AC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,8 +71,19 @@
 				02974D35242120D100B3ABF8 /* HomeViewController.swift */,
 				815DFC4A2395A21F00A8F1AC /* NIBLoadingExViewController.swift */,
 				814B9B582395C10300820768 /* ClassInitViewController.swift */,
+				02D29C1924239CDA0076C0FB /* PostDetailsViewController.swift */,
+				02D29C1F2423A6BA0076C0FB /* ItemsViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		02D29C1B24239E3C0076C0FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02D29C1D24239E600076C0FB /* NRTableViewCell.swift */,
+				02D29C212423A9450076C0FB /* NRCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		814B9B3F2395A9DB00820768 /* Frameworks */ = {
@@ -95,6 +114,7 @@
 		815DFC452395A21F00A8F1AC /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				02D29C1B24239E3C0076C0FB /* Views */,
 				02974D34242120C100B3ABF8 /* ViewControllers */,
 				815DFC462395A21F00A8F1AC /* AppDelegate.swift */,
 				815DFC4C2395A21F00A8F1AC /* Main.storyboard */,
@@ -180,7 +200,11 @@
 				815DFC4B2395A21F00A8F1AC /* NIBLoadingExViewController.swift in Sources */,
 				815DFC472395A21F00A8F1AC /* AppDelegate.swift in Sources */,
 				814B9B592395C10400820768 /* ClassInitViewController.swift in Sources */,
+				02D29C1E24239E600076C0FB /* NRTableViewCell.swift in Sources */,
+				02D29C222423A9450076C0FB /* NRCollectionViewCell.swift in Sources */,
+				02D29C202423A6BA0076C0FB /* ItemsViewController.swift in Sources */,
 				02974D36242120D100B3ABF8 /* HomeViewController.swift in Sources */,
+				02D29C1A24239CDA0076C0FB /* PostDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@ public struct NRSettings {
   public var imageColor: UIColor? = NRDefaultSettings.imageColor
   
   /// image used for NRView
-  public var image: UIImage? = UIImage(named: "placeholder_image")
+  public var image: UIImage? = NRDefaultSettings.image
   
   /// Color of title label
   public var titleColor: UIColor? = NRDefaultSettings.textColor

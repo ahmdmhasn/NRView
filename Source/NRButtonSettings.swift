@@ -18,11 +18,17 @@ public struct NRButtonSettings {
   public init() {}
 
   public var title: String = "Button"
+  
   public var cornerRadius: CGFloat = 0
+  
   public var withShadow: Bool = false
+  
   public var backgroundColor: UIColor = .clear
-  public var textColor: UIColor = UIApplication.shared.windows.first?.tintColor ?? .black
+  
+  public var textColor: UIColor = UIApplication.shared.keyWindow?.tintColor ?? .black
+  
   public var borderWidth: CGFloat = 0
+  
   public var borderColor: UIColor = .clear
   
 }

@@ -77,6 +77,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		02D29C232423ACC30076C0FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				815DFC1823959F2700A8F1AC /* Resources.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		81C19A442391DB530047EBEA = {
 			isa = PBXGroup;
 			children = (
@@ -117,10 +125,10 @@
 		81C19A682391DB7B0047EBEA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				02D29C232423ACC30076C0FB /* Resources */,
 				02D29C162423985D0076C0FB /* Extensions */,
 				02BC8101241501A10026D88D /* NRView.xib */,
 				81C19A6A2391DB970047EBEA /* NRView.swift */,
-				815DFC1823959F2700A8F1AC /* Resources.xcassets */,
 				02974D30242112FF00B3ABF8 /* NRButtonSettings.swift */,
 				02974D3224211C1300B3ABF8 /* ImageWidthType.swift */,
 				0241499C24222E3B0004440C /* NRSettings.swift */,
