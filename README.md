@@ -3,7 +3,6 @@
 ![Pod Version](https://img.shields.io/cocoapods/v/NRView)
 ![Pod Platform](https://img.shields.io/cocoapods/p/NRView)
 ![Pod License](https://img.shields.io/cocoapods/l/NRView)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
 
 `NRView` makes your app looks perfect when no results exists instead of showing empty view.
