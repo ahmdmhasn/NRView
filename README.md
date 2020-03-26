@@ -91,20 +91,40 @@ Setup `NRViewSettings` object
 ```
   let settings: NRSettings = {
     var settings = NRSettings()
-    // Set text
+    
+    // Set title label text
     settings.titleText = "Unable to Connect"
+    
+    // Set subtitle label text
     settings.subtitleText = "Please check your internet connection and try again."
-    // Set Image
+    
+    // Set image 
     settings.image = UIImage(named: "group")
+    
+    // Set image tint color
     settings.imageColor = .gray
+    
+    // Image width, types available are regular, compact or set any width  
     settings.imageWidthType = .compact
-    // Set Button
+    
+    // Set button configuration 
     var buttonSettings = NRButtonSettings()
+    
+    // Button title
     buttonSettings.title = "Try Again"
+    
+    // Button corner radius
     buttonSettings.cornerRadius = 3
+    
+    // Button background color
     buttonSettings.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
+    
+    // Button text color
     buttonSettings.textColor = .blue
+    
+    // Button settings, set to nil to hide the button
     settings.buttonSettings = buttonSettings
+    
     return settings
   }()
 ```
@@ -113,9 +133,10 @@ Initialize NRView with settings
 ```
   lazy var nrView: NRView = {
     let nrView = NRView.addToView(view, settings: settings)
-    // Delegate
+    
+    // Action when button tapped
     nrView.didTapButton = { button in
-      print("Try Again Button Tapped...")
+      print("Button Tapped...")
     }
     return nrView
   }()
