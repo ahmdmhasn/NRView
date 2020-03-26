@@ -30,7 +30,7 @@ struct NRDefaultSettings {
   static let text: String? = nil
   
   /// Default background color
-  static let backgroundColor = UIColor.clear
+  static let backgroundColor = UIColor.white
   
   /// default button settings
   static let buttonSettings = NRButtonSettings.default

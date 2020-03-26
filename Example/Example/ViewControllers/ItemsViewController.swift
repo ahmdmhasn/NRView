@@ -12,14 +12,15 @@ private let reuseIdentifier = "Cell"
 
 class ItemsViewController: UICollectionViewController {
   
-  private let itemsCount = 10
+  private let itemsCount = 8
+  private let spacing: CGFloat = 8
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Register cell classes
-    self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-    self.collectionView.register(NRCollectionViewCell.self, forCellWithReuseIdentifier: "\(NRCollectionViewCell.self)")
-    // Do any additional setup after loading the view.
+    // Configure collection view
+    collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    collectionView.register(NRCollectionViewCell.self, forCellWithReuseIdentifier: "\(NRCollectionViewCell.self)")
+    collectionView.contentInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
   }
   
   // MARK: UICollectionViewDataSource
@@ -37,10 +38,12 @@ class ItemsViewController: UICollectionViewController {
     
     if indexPath.row == itemsCount - 1 {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(NRCollectionViewCell.self)", for: indexPath)
+      setRoundedCorners(for: cell)
       return cell
       
     } else {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+      setRoundedCorners(for: cell)
       let randomColor = UIColor(
         red: .random(in: 0...1),
         green: .random(in: 0...1),
@@ -51,6 +54,11 @@ class ItemsViewController: UICollectionViewController {
       return cell
     }
   }
+  
+  private func setRoundedCorners(for cell: UICollectionViewCell) {
+    cell.layer.cornerRadius = 8
+    cell.layer.masksToBounds = true
+  }
     
 }
 
@@ -60,7 +68,7 @@ extension ItemsViewController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     print(indexPath)
-    let lenght = (collectionView.bounds.width - 10) / 2
+    let lenght = (collectionView.bounds.width - spacing * 2 - 10) / 2
     return CGSize(width: lenght, height: lenght)
   }
   

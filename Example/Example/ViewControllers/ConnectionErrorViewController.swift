@@ -9,7 +9,23 @@
 import UIKit
 import NRView
 
-class ClassInitViewController: UIViewController {
+class ConnectionErrorViewController: UIViewController {
+    
+  // MARK: - View Lifecycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+  }
+    
+  // MARK: - Handlers
+  @IBAction func addTapped(_ sender: UIBarButtonItem) {
+    nrView.show(withAnimationType: .fade(0.5))
+  }
+  
+  
+  @IBAction func removeTapped(_ sender: UIBarButtonItem) {
+    nrView.hide(withAnimationType: .fade(0.5))
+  }
   
   // MARK: - NRView
   private lazy var settings: NRSettings = {
@@ -39,24 +55,5 @@ class ClassInitViewController: UIViewController {
     }
     return nrView
   }()
-  
-  // MARK: - View Lifecycle
-  override func viewDidLoad() {
-    super.viewDidLoad()
     
-    // Do any additional setup after loading the view.
-  }
-  
-  
-  // MARK: - Handlers
-  @IBAction func addTapped(_ sender: UIBarButtonItem) {
-    nrView.show(withAnimationType: .fade(0.5))
-  }
-  
-  
-  @IBAction func removeTapped(_ sender: UIBarButtonItem) {
-    nrView.hide(withAnimationType: .fade(0.5))
-  }
-  
-  
 }

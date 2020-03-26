@@ -9,7 +9,7 @@
 import UIKit
 import NRView
 
-class NIBLoadingExViewController: UIViewController {
+class RideBookingViewController: UIViewController {
   
   @IBOutlet weak var nrView: NRView!
   

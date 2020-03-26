@@ -13,8 +13,8 @@ struct VCModel {
   let identifier: String
   
   static let allItems: [VCModel] = [
-    VCModel(title: "Instance Example", identifier: "\(NIBLoadingExViewController.self)"),
-    VCModel(title: "Static Example", identifier: "\(ClassInitViewController.self)"),
+    VCModel(title: "No Rides Avaiable (XIB)", identifier: "\(RideBookingViewController.self)"),
+    VCModel(title: "Connection Error (Programatically)", identifier: "\(ConnectionErrorViewController.self)"),
     VCModel(title: "LinkedIn Post", identifier: "\(PostDetailsViewController.self)"),
     VCModel(title: "Items Selection", identifier: "\(ItemsViewController.self)"),
   ]
@@ -45,9 +45,10 @@ extension HomeViewController {
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let identifier = list[indexPath.row].identifier
+    let item = list[indexPath.row]
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
+    let viewController = storyboard.instantiateViewController(withIdentifier: item.identifier)
+    viewController.title = item.title
     navigationController?.pushViewController(viewController, animated: true)
   }
   

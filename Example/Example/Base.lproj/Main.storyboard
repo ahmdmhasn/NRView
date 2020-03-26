@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Class Init View Controller-->
+        <!--Connection Error View Controller-->
         <scene sceneID="nec-h2-6pG">
             <objects>
-                <viewController storyboardIdentifier="ClassInitViewController" id="g1Q-fY-e72" customClass="ClassInitViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConnectionErrorViewController" id="g1Q-fY-e72" customClass="ConnectionErrorViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SRE-uv-1rX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,12 +21,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="Yp1-uJ-q1N">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="6vp-Fr-ofI">
+                            <barButtonItem title="Show" id="6vp-Fr-ofI">
                                 <connections>
                                     <action selector="addTapped:" destination="g1Q-fY-e72" id="3DM-PU-T5b"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="trash" id="Ypn-uR-Xrh">
+                            <barButtonItem title="Hide" id="Ypn-uR-Xrh">
                                 <connections>
                                     <action selector="removeTapped:" destination="g1Q-fY-e72" id="mnY-Mx-vIY"/>
                                 </connections>
@@ -143,7 +143,7 @@
         <!--FirstVC-->
         <scene sceneID="6aM-Yh-sUg">
             <objects>
-                <viewController storyboardIdentifier="NIBLoadingExViewController" id="KT4-ih-GIn" customClass="NIBLoadingExViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RideBookingViewController" id="KT4-ih-GIn" customClass="RideBookingViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Suv-RN-6Yv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
