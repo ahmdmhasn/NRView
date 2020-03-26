@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0241499D24222E3B0004440C /* NRSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0241499C24222E3B0004440C /* NRSettings.swift */; };
+		0241499F2422375F0004440C /* NRDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0241499E2422375F0004440C /* NRDefaultSettings.swift */; };
+		02530F1A242CD2D20037486F /* NRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02530F19242CD2D20037486F /* NRButton.swift */; };
+		02974D31242112FF00B3ABF8 /* NRButtonSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02974D30242112FF00B3ABF8 /* NRButtonSettings.swift */; };
+		02974D3324211C1300B3ABF8 /* ImageWidthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02974D3224211C1300B3ABF8 /* ImageWidthType.swift */; };
+		02BC8102241501A10026D88D /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BC8101241501A10026D88D /* NRView.xib */; };
+		02D29C182423986F0076C0FB /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D29C172423986F0076C0FB /* UIButton+.swift */; };
+		815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815DFC1823959F2700A8F1AC /* Resources.xcassets */; };
+		815DFC702395A74200A8F1AC /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
 		81C19A582391DB530047EBEA /* NRView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C19A4E2391DB530047EBEA /* NRView.framework */; };
 		81C19A5D2391DB530047EBEA /* NRViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A5C2391DB530047EBEA /* NRViewTests.swift */; };
 		81C19A5F2391DB530047EBEA /* NRView.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C19A512391DB530047EBEA /* NRView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81C19A6C2391DB970047EBEA /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C19A692391DB970047EBEA /* NRView.xib */; };
-		81C19A6D2391DB970047EBEA /* NRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6A2391DB970047EBEA /* NRView.swift */; };
-		81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6B2391DB970047EBEA /* UIView+Ext.swift */; };
+		81C19A6E2391DB980047EBEA /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19A6B2391DB970047EBEA /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,15 +33,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0241499C24222E3B0004440C /* NRSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRSettings.swift; sourceTree = "<group>"; };
+		0241499E2422375F0004440C /* NRDefaultSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRDefaultSettings.swift; sourceTree = "<group>"; };
+		02530F19242CD2D20037486F /* NRButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRButton.swift; sourceTree = "<group>"; };
+		02974D30242112FF00B3ABF8 /* NRButtonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRButtonSettings.swift; sourceTree = "<group>"; };
+		02974D3224211C1300B3ABF8 /* ImageWidthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidthType.swift; sourceTree = "<group>"; };
+		02BC8101241501A10026D88D /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
+		02D29C172423986F0076C0FB /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		815DFC1823959F2700A8F1AC /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 		81C19A4E2391DB530047EBEA /* NRView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NRView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C19A512391DB530047EBEA /* NRView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRView.h; sourceTree = "<group>"; };
 		81C19A522391DB530047EBEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81C19A572391DB530047EBEA /* NRViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NRViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C19A5C2391DB530047EBEA /* NRViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRViewTests.swift; sourceTree = "<group>"; };
 		81C19A5E2391DB530047EBEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81C19A692391DB970047EBEA /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
 		81C19A6A2391DB970047EBEA /* NRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NRView.swift; sourceTree = "<group>"; };
-		81C19A6B2391DB970047EBEA /* UIView+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		81C19A6B2391DB970047EBEA /* UIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +70,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02D29C162423985D0076C0FB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				81C19A6B2391DB970047EBEA /* UIView+.swift */,
+				02D29C172423986F0076C0FB /* UIButton+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		02D29C232423ACC30076C0FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				815DFC1823959F2700A8F1AC /* Resources.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		02D29C262423E47C0076C0FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02974D3224211C1300B3ABF8 /* ImageWidthType.swift */,
+				02974D30242112FF00B3ABF8 /* NRButtonSettings.swift */,
+				0241499C24222E3B0004440C /* NRSettings.swift */,
+				0241499E2422375F0004440C /* NRDefaultSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		81C19A442391DB530047EBEA = {
 			isa = PBXGroup;
 			children = (
@@ -96,11 +138,15 @@
 		81C19A682391DB7B0047EBEA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				02D29C262423E47C0076C0FB /* Models */,
+				02D29C232423ACC30076C0FB /* Resources */,
+				02D29C162423985D0076C0FB /* Extensions */,
+				02530F19242CD2D20037486F /* NRButton.swift */,
+				02BC8101241501A10026D88D /* NRView.xib */,
 				81C19A6A2391DB970047EBEA /* NRView.swift */,
-				81C19A692391DB970047EBEA /* NRView.xib */,
-				81C19A6B2391DB970047EBEA /* UIView+Ext.swift */,
 			);
-			path = Source;
+			name = Source;
+			path = ../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +242,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C19A6C2391DB970047EBEA /* NRView.xib in Resources */,
+				02BC8102241501A10026D88D /* NRView.xib in Resources */,
+				815DFC1923959F2700A8F1AC /* Resources.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,8 +261,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C19A6E2391DB980047EBEA /* UIView+Ext.swift in Sources */,
-				81C19A6D2391DB970047EBEA /* NRView.swift in Sources */,
+				0241499D24222E3B0004440C /* NRSettings.swift in Sources */,
+				02D29C182423986F0076C0FB /* UIButton+.swift in Sources */,
+				815DFC702395A74200A8F1AC /* NRView.swift in Sources */,
+				0241499F2422375F0004440C /* NRDefaultSettings.swift in Sources */,
+				81C19A6E2391DB980047EBEA /* UIView+.swift in Sources */,
+				02530F1A242CD2D20037486F /* NRButton.swift in Sources */,
+				02974D31242112FF00B3ABF8 /* NRButtonSettings.swift in Sources */,
+				02974D3324211C1300B3ABF8 /* ImageWidthType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -346,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -364,13 +417,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JUUZV79G5F;
+				DEVELOPMENT_TEAM = 6SX92YV8J2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NRView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -392,13 +445,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = JUUZV79G5F;
+				DEVELOPMENT_TEAM = 6SX92YV8J2;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = NRView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

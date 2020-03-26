@@ -1,6 +1,11 @@
 # NRView
 
-No Result View makes your app looks perfect when no results exists instead of showing empty view.
+![Pod Version](https://img.shields.io/cocoapods/v/NRView)
+![Pod Platform](https://img.shields.io/cocoapods/p/NRView)
+![Pod License](https://img.shields.io/cocoapods/l/NRView)
+[![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
+
+Today almost all apps have Api requests. Despite the fact that many of them fail dure to network issue or for any other reasons.`NRView` has been conceived to address this need, an elegant message to users with a minimal effort.
 
 ## Getting Started
 
@@ -18,10 +23,38 @@ iOS 10.0+
 Xcode 10.2+
 Swift 5+
 
-## Communication
+## Preview
 
-* If you found a bug, open an issue here on GitHub and follow the guide. The more detail the better!
-* If you want to contribute, submit a pull request.
+<table>
+<tr>
+<td width="25%">
+<center>Example 01</center>
+</td>
+<td width="25%">
+<center>Example 02</center>
+</td>
+<td width="25%">
+<center>UICollectionViewCell</center>
+</td>
+<td width="25%">
+<center>UITableViewCell</center>
+</td>
+</tr>
+<tr>
+<td width="25%">
+<img src="Screenshots/scrshot03.png"></img>
+</td>
+<td width="25%">
+<img src="Screenshots/scrshot04.png"></img>
+</td>
+<td width="25%">
+<img src="Screenshots/scrshot01.png"></img>
+</td>
+<td width="25%">
+<img src="Screenshots/scrshot02.png"></img>
+</td>
+</tr>
+</table>
 
 ## Installing
 
@@ -29,68 +62,100 @@ Swift 5+
 
 CocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate NRView into your Xcode project using CocoaPods, specify it in your Podfile:
 ```
-pod 'NRView', '~> 0.1.1'
+pod 'NRView', '~> 0.2.0'
 ```
 
 #### Manually
 
-If you prefer not to use any of the aforementioned dependency managers, you can copy ``` NRView/Source ``` into your project manually.
+If you prefer not to use any of the aforementioned dependency managers, you can copy ``` Source ``` into your project manually.
 
 ## How It Works
 
 #### Using Storyboard/ xib
+1) Drag `View` object from the *Object Library* into your storyboard.
+
+<img src='Screenshots/IBInspector_01.png' width='256' alt='Add view control in attributes inspector'>
+
+2) Set the view's class to `NRView` in the *Identity Inspector*.
+
+<img src='Screenshots/IBInspector_02.png' width='256' alt='Add Cosmos rating view to the storyboard'>
+
+3) Customize the `NRView` appearance in the *Attributes Inspector*. 
+
+<img src='Screenshots/IBInspector_03.png' width='256' alt='Add Cosmos rating view to the storyboard'>
+
+#### Programatically
+Add `import NRView` to your source code.
+
+Setup `NRViewSettings` object
+```
+  let settings: NRSettings = {
+    var settings = NRSettings()
+    
+    // Set title label text
+    settings.titleText = "Unable to Connect"
+    
+    // Set subtitle label text
+    settings.subtitleText = "Please check your internet connection and try again."
+    
+    // Set image 
+    settings.image = UIImage(named: "group")
+    
+    // Set image tint color
+    settings.imageColor = .gray
+    
+    // Image width, types available are regular, compact or set any width  
+    settings.imageWidthType = .compact
+    
+    // Set button configuration 
+    var buttonSettings = NRButtonSettings()
+    
+    // Button title
+    buttonSettings.title = "Try Again"
+    
+    // Button corner radius
+    buttonSettings.cornerRadius = 3
+    
+    // Button background color
+    buttonSettings.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
+    
+    // Button text color
+    buttonSettings.textColor = .blue
+    
+    // Button settings, set to nil to hide the button
+    settings.buttonSettings = buttonSettings
+    
+    return settings
+  }()
+```
+
+Initialize NRView with settings
+```
+  lazy var nrView: NRView = {
+    let nrView = NRView.addToView(view, settings: settings)
+    
+    // Action when button tapped
+    nrView.didTapButton = { button in
+      print("Button Tapped...")
+    }
+    return nrView
+  }()
 
 ```
-@IBOutlet weak var nrView: NRView!
 
-// Initial view setup
-nrView.setup(text: "Nothing here for you!",
-        image: UIImage(named: "desert"),
-        delegate: self)
+Show & hide `NRView` with different animations types.
 ```
-
-Set colors
+nrView.show(withAnimationType: .fade(0.5))
 ```
-nrView.textColor = .gray
-nrView.imageColor = .gray
+```
+nrView.hide(withAnimationType: .none)
 ```
 
-Add shakable animation when image tapped
-```
-nrView.shakeImageOnClick = true
-```
+## Communication
 
-Change button style
-```
-// Default
-nrView.buttonStyle(.none(color: .gray))
-        
-// Rounded
-nrView.buttonStyle(.rounded(cornerRadius: 99, withShadow: true, backgroundColor: .darkGray, textColor: .orange))
-        
-// With Stroke
-nrView.buttonStyle(.stroke(cornerRadius: 5, withShadow: true, color: .blue, strokeWidth: 2))
-```
-
-Show NRView with fading animation (with optional duration)
-```
-nrView.fadeIn(duration: 2.5)
-```
-
-Hide NRView with fading animation
-```
-nrView.fadeOut()
-```
-
-Handle button response (You should set selegate property)
-```
-extension ViewController: NoResultViewDelegate {
-    func noResultView(_ view: NoResultView, didPressButton sender: UIButton) {
-        print("Button was pressed")
-    }   
-}
-```
+* If you found a bug, open an issue here on GitHub and follow the guide. The more detail the better!
+* If you want to contribute, submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+`NRView` is licensed under the [MIT license](https://github.com/ahmdmhasn/NRView/blob/master/LICENSE).  The icons are made by [Freepik](http://www.freepik.com) from [Flaticon](http://www.flaticon.com) and are licensed under [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/).
