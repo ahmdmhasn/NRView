@@ -23,10 +23,38 @@ iOS 10.0+
 Xcode 10.2+
 Swift 5+
 
-## Communication
+## Preview
 
-* If you found a bug, open an issue here on GitHub and follow the guide. The more detail the better!
-* If you want to contribute, submit a pull request.
+<table>
+<tr>
+<td width="25%">
+<center>Example 01</center>
+</td>
+<td width="25%">
+<center>Example 02</center>
+</td>
+<td width="25%">
+<center>UICollectionViewCell</center>
+</td>
+<td width="25%">
+<center>UITableViewCell</center>
+</td>
+</tr>
+<tr>
+<td width="25%">
+<img src="Screenshots/scrshot03.png"></img>
+</td>
+<td width="25%">
+<img src="Screenshots/scrshot04.png"></img>
+</td>
+<td width="25%">
+<img src="Screenshots/scrshot01.png"></img>
+</td>
+<td width="25%">
+<img src="Screenshots/scrshot02.png"></img>
+</td>
+</tr>
+</table>
 
 ## Installing
 
@@ -44,57 +72,25 @@ If you prefer not to use any of the aforementioned dependency managers, you can 
 ## How It Works
 
 #### Using Storyboard/ xib
+1) Drag `View` object from the *Object Library* into your storyboard.
 
-```
-@IBOutlet weak var nrView: NRView!
+<img src='Screenshots/IBInspector_01.png' width='256' alt='Add view control in attributes inspector'>
 
-// Initial view setup
-nrView.setup(text: "Nothing here for you!",
-        image: UIImage(named: "desert"),
-        delegate: self)
-```
+2) Set the view's class to `NRView` in the *Identity Inspector*.
 
-Set colors
-```
-nrView.textColor = .gray
-nrView.imageColor = .gray
-```
+<img src='Screenshots/IBInspector_02.png' width='256' alt='Add Cosmos rating view to the storyboard'>
 
-Add shakable animation when image tapped
-```
-nrView.shakeImageOnClick = true
-```
+3) Customize the `NRView` appearance in the *Attributes Inspector*. 
 
-Change button style
-```
-// Default
-nrView.buttonStyle(.none(color: .gray))
-        
-// Rounded
-nrView.buttonStyle(.rounded(cornerRadius: 99, withShadow: true, backgroundColor: .darkGray, textColor: .orange))
-        
-// With Stroke
-nrView.buttonStyle(.stroke(cornerRadius: 5, withShadow: true, color: .blue, strokeWidth: 2))
-```
+<img src='Screenshots/IBInspector_03.png' width='256' alt='Add Cosmos rating view to the storyboard'>
 
-Show NRView with fading animation (with optional duration)
-```
-nrView.fadeIn(duration: 2.5)
-```
+#### Programatically
 
-Hide NRView with fading animation
-```
-nrView.fadeOut()
-```
 
-Handle button response (You should set delegate property)
-```
-extension ViewController: NoResultViewDelegate {
-    func noResultView(_ view: NoResultView, didPressButton sender: UIButton) {
-        print("Button was pressed")
-    }   
-}
-```
+## Communication
+
+* If you found a bug, open an issue here on GitHub and follow the guide. The more detail the better!
+* If you want to contribute, submit a pull request.
 
 ## License
 
