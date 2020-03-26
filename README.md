@@ -5,7 +5,7 @@
 ![Pod License](https://img.shields.io/cocoapods/l/NRView)
 [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
 
-`NRView` makes your app looks perfect when no results exists instead of showing empty view.
+Today almost all apps have Api requests. Despite the fact that many of them fail dure to network issue or for any other reasons.`NRView` has been conceived to address this need, an elegant message to users with a minimal effort.
 
 ## Getting Started
 
