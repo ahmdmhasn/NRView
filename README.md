@@ -62,7 +62,7 @@ Swift 5+
 
 CocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate NRView into your Xcode project using CocoaPods, specify it in your Podfile:
 ```
-pod 'NRView', '~> 0.1.1'
+pod 'NRView', '~> 0.2.0'
 ```
 
 #### Manually
@@ -85,7 +85,50 @@ If you prefer not to use any of the aforementioned dependency managers, you can 
 <img src='Screenshots/IBInspector_03.png' width='256' alt='Add Cosmos rating view to the storyboard'>
 
 #### Programatically
+Add `import NRView` to your source code.
 
+Setup `NRViewSettings` object
+```
+  let settings: NRSettings = {
+    var settings = NRSettings()
+    // Set text
+    settings.titleText = "Unable to Connect"
+    settings.subtitleText = "Please check your internet connection and try again."
+    // Set Image
+    settings.image = UIImage(named: "group")
+    settings.imageColor = .gray
+    settings.imageWidthType = .compact
+    // Set Button
+    var buttonSettings = NRButtonSettings()
+    buttonSettings.title = "Try Again"
+    buttonSettings.cornerRadius = 3
+    buttonSettings.backgroundColor = UIColor.blue.withAlphaComponent(0.1)
+    buttonSettings.textColor = .blue
+    settings.buttonSettings = buttonSettings
+    return settings
+  }()
+```
+
+Initialize NRView with settings
+```
+  lazy var nrView: NRView = {
+    let nrView = NRView.addToView(view, settings: settings)
+    // Delegate
+    nrView.didTapButton = { button in
+      print("Try Again Button Tapped...")
+    }
+    return nrView
+  }()
+
+```
+
+Show & hide `NRView` with different animations types.
+```
+nrView.show(withAnimationType: .fade(0.5))
+```
+```
+nrView.hide(withAnimationType: .none)
+```
 
 ## Communication
 
