@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NRButton: UIButton {
+open class NRButton: UIButton {
 
   // MARK: - Init
   override init(frame: CGRect) {
@@ -16,7 +16,7 @@ class NRButton: UIButton {
     commitInit()
   }
   
-  required init?(coder: NSCoder) {
+  required public init?(coder: NSCoder) {
     super.init(coder: coder)
     commitInit()
   }
@@ -27,29 +27,29 @@ class NRButton: UIButton {
   }
   
   // MARK: - Touch Events
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+  override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesBegan(touches, with: event)
     scaleAnimation(value: 0.95)
   }
   
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+  override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesMoved(touches, with: event)
     scaleAnimation(value: 0.95)
   }
   
-  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+  override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesEnded(touches, with: event)
     scaleAnimation(value: 1.0)
   }
   
-  override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+  override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
     super.touchesCancelled(touches, with: event)
     scaleAnimation(value: 1.0)
   }
 
   // MARK: - Configure
   /**
-   Apply `buttonSettings` to the view
+   Apply `buttonSettings` to the view, set it to `nil` to hide the button.
    */
   func configure(_ settings: NRButtonSettings?) {
     
@@ -64,14 +64,13 @@ class NRButton: UIButton {
     layer.cornerRadius = min(halfHeight, settings.cornerRadius)
     layer.masksToBounds = settings.cornerRadius != 0
     backgroundColor = settings.backgroundColor
-    
+    /// Set title text and color
     setTitle(settings.title)
     setTitle(settings.textColor)
-    
+    /// Configure border
     layer.borderWidth = settings.borderWidth
-    
     layer.borderColor = settings.borderColor.cgColor
-    
+    /// Configure shadow
     if settings.withShadow { shadow() }
   }
   

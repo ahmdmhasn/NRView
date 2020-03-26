@@ -8,7 +8,10 @@
 
 import UIKit
 
-@IBDesignable public class NRView: UIView {
+/**
+`NRView` is an elegant way to show a message to a user, Including image, title, subtitle and button.
+*/
+@IBDesignable open class NRView: UIView {
   
   // MARK: - Default Properties
     
@@ -31,13 +34,24 @@ import UIKit
   
   // MARK: - Outlets
   
+  /// Container view and the subview of NRView. If you want to customize NRView by simply adding additional views, you should add them to the content view.
   @IBOutlet var parentView: UIView!
+  
+  /// The image view of NRView.
   @IBOutlet var imageView: UIImageView!
+  
+  /// The label used for the main textual content of NRView.
   @IBOutlet var titleLabel: UILabel!
+  
+  /// The secondary label of the NRView.
   @IBOutlet var subtitleLabel: UILabel!
+  
+  /// The button of NRView.
   @IBOutlet var button: NRButton!
+  
+  /// Width layout constraint of ImageView.
   @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
-    
+  
   // MARK: - View Lifecycle
   
   /**
@@ -179,18 +193,18 @@ import UIKit
    Updates the view for the selected settings.
    */
   open func update() {
-    
+    /// Update title label
     titleLabel.text = settings.titleText
     titleLabel.textColor = settings.titleColor
-    
+    /// Update subtitle label
     subtitleLabel.text = settings.subtitleText
     subtitleLabel.textColor = settings.subtitleColor
-        
-    backgroundColor = settings.backgroundColor
-
-    button.configure(settings.buttonSettings)
-    
+    /// Update image
     setImage(settings.image, withTintColor: settings.imageColor)
+    /// Update background view
+    backgroundColor = settings.backgroundColor
+    /// Update button
+    button.configure(settings.buttonSettings)
   }
   
   /**
@@ -236,11 +250,12 @@ import UIKit
     didSet { settings.buttonSettings?.title = buttonTitle }
   }
 
-  /// Text color
+  /// Title label color
   @IBInspectable public var titleColor : UIColor? = NRDefaultSettings.textColor {
     didSet { settings.titleColor = titleColor }
   }
   
+  /// Subtitle label color
   @IBInspectable public var subtitleColor : UIColor? = NRDefaultSettings.textColor {
     didSet { settings.subtitleColor = subtitleColor }
   }

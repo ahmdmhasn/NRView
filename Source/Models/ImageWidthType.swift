@@ -12,12 +12,16 @@ import UIKit
 
 /// A width for the NR ImageView
 public enum ImageWidthType {
+  
   /// Regualar case with default value of `220`
   case regular
+  
   /// Compact case with a default value of `150`
   case compact
+  
   /// Any other values
   case any(CGFloat)
+  
   /// - Returns: a `CGFloat` value for the enum type.
   var value: CGFloat {
     switch self {
@@ -26,4 +30,5 @@ public enum ImageWidthType {
     case .any(let value): return value
     }
   }
+  
 }
