@@ -15,9 +15,11 @@ extension UIButton {
   }
   
   func setTitle(_ title: String?) {
-    allStates.forEach{
-      self.setTitle(title, for: $0)
-    }
+    allStates.forEach{ self.setTitle(title, for: $0) }
+  }
+  
+  func setTitle(_ color: UIColor) {
+    allStates.forEach{ self.setTitleColor(color, for: $0) }
   }
   
 }

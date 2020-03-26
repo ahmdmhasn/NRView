@@ -35,7 +35,7 @@ import UIKit
   @IBOutlet var imageView: UIImageView!
   @IBOutlet var titleLabel: UILabel!
   @IBOutlet var subtitleLabel: UILabel!
-  @IBOutlet var button: UIButton!
+  @IBOutlet var button: NRButton!
   @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
     
   // MARK: - View Lifecycle
@@ -188,7 +188,7 @@ import UIKit
         
     backgroundColor = settings.backgroundColor
 
-    updateButtonSettings()
+    button.configure(settings.buttonSettings)
     
     setImage(settings.image, withTintColor: settings.imageColor)
   }
@@ -265,40 +265,4 @@ private extension NRView {
     self.didTapButton?(sender)
   }
       
-}
-
-// MARK: - UI Helpers
-
-private extension NRView {
-  
-  /**
-   Apply `buttonSettings` to the view
-   */
-  func updateButtonSettings() {
-    
-    guard let buttonSettings = settings.buttonSettings else {
-      button.isHidden = true
-      return
-    }
-    
-    let edgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-    button.contentEdgeInsets = edgeInsets
-
-    /// Apply corner radius to the button, It should not be higher than the half height
-    layoutIfNeeded()
-    let halfHeight = button.bounds.size.height / 2
-    button.layer.cornerRadius = min(halfHeight, buttonSettings.cornerRadius)
-    button.layer.masksToBounds = buttonSettings.cornerRadius != 0
-    button.backgroundColor = buttonSettings.backgroundColor
-    
-    button.setTitle(buttonSettings.title)
-    button.tintColor = buttonSettings.textColor
-    
-    button.layer.borderWidth = buttonSettings.borderWidth
-    
-    button.layer.borderColor = buttonSettings.borderColor.cgColor
-    
-    if buttonSettings.withShadow { button.shadow() }
-  }
-
 }

@@ -35,15 +35,15 @@ internal extension UIView {
     }
   }
   
-  func scaleAnimation(duration: Double, scale: CGFloat) {
+  func scaleAnimation(value: CGFloat, duration: Double = 0.3) {
     UIView.animate(
       withDuration: duration,
       delay: 0,
       usingSpringWithDamping: 0.5,
       initialSpringVelocity: 0,
-      options: [],
+      options: [.curveEaseIn],
       animations: {
-        self.transform = CGAffineTransform.init(scaleX: scale, y: scale)
+        self.transform = CGAffineTransform(scaleX: value, y: value)
     }, completion: nil)
   }
   

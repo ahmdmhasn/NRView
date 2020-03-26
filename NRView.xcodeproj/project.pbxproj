@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0241499D24222E3B0004440C /* NRSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0241499C24222E3B0004440C /* NRSettings.swift */; };
 		0241499F2422375F0004440C /* NRDefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0241499E2422375F0004440C /* NRDefaultSettings.swift */; };
+		02530F1A242CD2D20037486F /* NRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02530F19242CD2D20037486F /* NRButton.swift */; };
 		02974D31242112FF00B3ABF8 /* NRButtonSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02974D30242112FF00B3ABF8 /* NRButtonSettings.swift */; };
 		02974D3324211C1300B3ABF8 /* ImageWidthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02974D3224211C1300B3ABF8 /* ImageWidthType.swift */; };
 		02BC8102241501A10026D88D /* NRView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BC8101241501A10026D88D /* NRView.xib */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		0241499C24222E3B0004440C /* NRSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRSettings.swift; sourceTree = "<group>"; };
 		0241499E2422375F0004440C /* NRDefaultSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRDefaultSettings.swift; sourceTree = "<group>"; };
+		02530F19242CD2D20037486F /* NRButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRButton.swift; sourceTree = "<group>"; };
 		02974D30242112FF00B3ABF8 /* NRButtonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NRButtonSettings.swift; sourceTree = "<group>"; };
 		02974D3224211C1300B3ABF8 /* ImageWidthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidthType.swift; sourceTree = "<group>"; };
 		02BC8101241501A10026D88D /* NRView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRView.xib; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				02D29C262423E47C0076C0FB /* Models */,
 				02D29C232423ACC30076C0FB /* Resources */,
 				02D29C162423985D0076C0FB /* Extensions */,
+				02530F19242CD2D20037486F /* NRButton.swift */,
 				02BC8101241501A10026D88D /* NRView.xib */,
 				81C19A6A2391DB970047EBEA /* NRView.swift */,
 			);
@@ -263,6 +266,7 @@
 				815DFC702395A74200A8F1AC /* NRView.swift in Sources */,
 				0241499F2422375F0004440C /* NRDefaultSettings.swift in Sources */,
 				81C19A6E2391DB980047EBEA /* UIView+.swift in Sources */,
+				02530F1A242CD2D20037486F /* NRButton.swift in Sources */,
 				02974D31242112FF00B3ABF8 /* NRButtonSettings.swift in Sources */,
 				02974D3324211C1300B3ABF8 /* ImageWidthType.swift in Sources */,
 			);
