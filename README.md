@@ -1,6 +1,11 @@
 # NRView
 
-No Result View makes your app looks perfect when no results exists instead of showing empty view.
+![Pod Version](https://img.shields.io/cocoapods/v/NRView)
+![Pod Platform](https://img.shields.io/cocoapods/p/NRView)
+![Pod License](https://img.shields.io/cocoapods/l/NRView)
+[![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-green.svg?style=flat)](https://cocoapods.org)
+
+Today almost all apps have Api requests. Despite the fact that many of them fail dure to network issue or for any other reasons.`NRView` has been conceived to address this need, an elegant message to users with a minimal effort.
 
 ## Getting Started
 
@@ -93,4 +98,4 @@ extension ViewController: NoResultViewDelegate {
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+`NRView` is licensed under the [MIT license](https://github.com/ahmdmhasn/NRView/blob/master/LICENSE).  The icons are made by [Freepik](http://www.freepik.com) from [Flaticon](http://www.flaticon.com) and are licensed under [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0/).
