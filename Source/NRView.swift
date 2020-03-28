@@ -137,7 +137,7 @@ import UIKit
    - parameter view: parent view to remove NRView from
    - parameter animated: should animate
    */
-  static func removeFromView(_ view: UIView, animated: Bool = true) {
+  public static func removeFromView(_ view: UIView, animated: Bool = true) {
     for v in view.subviews {
       if v is NRView {
         if animated {
@@ -161,7 +161,7 @@ import UIKit
    Show NRView with a duration
    - parameter withAnimationType: custom animation type with duration of the animation
    */
-  public func show(withAnimationType type: AnimationType? = .fade(0.3)) {
+  open func show(withAnimationType type: AnimationType? = .fade(0.3)) {
     switch type {
       
     case .fade(let duration):
@@ -176,7 +176,7 @@ import UIKit
    Hide NRView with a duration
    - parameter withAnimationType: custom animation type with duration of the animation
    */
-  public func hide(withAnimationType type: AnimationType? = .fade(0.3)) {
+  open func hide(withAnimationType type: AnimationType? = .fade(0.3)) {
     switch type {
       
     case .fade(let duration):
@@ -212,7 +212,7 @@ import UIKit
    - parameter image: image that will be displayed, can be nil
    - parameter color: tint color, leave it or set the value with nil ta add the original image
    */
-  public func setImage(_ image: UIImage?, withTintColor color: UIColor? = nil) {
+  open func setImage(_ image: UIImage?, withTintColor color: UIColor? = nil) {
     if let color = color {
       self.imageView.image = image?.withRenderingMode(.alwaysTemplate)
       self.imageView.tintColor = color
